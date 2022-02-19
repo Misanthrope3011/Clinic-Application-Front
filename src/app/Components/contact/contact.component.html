@@ -1,0 +1,64 @@
+<section class="contact">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 mb-3">
+                <h2>Formularz kontaktowy</h2>
+            </div>
+            <div class="col-12">
+                <form [formGroup]="contact" (ngSubmit)="sendContactForm()">
+                    <div class="row">
+                        <div class="col-xl-6 col-md-6 col-12">
+                            <div class="form-group">
+                                <label for="exampleFormControlInput1">Imie: </label>
+                                <input type="text" formControlName = "name" class="form-control" id="exampleFormControlInput1" [ngClass]="{ 'is-invalid ng-invalid' : submitted && f.name.errors }">
+                                <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+                                    <div *ngIf="f.name.errors">Imię jest polem wymaganym i może zawierać jedynie litery alfabetu.</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-6 col-md-6 col-12">
+                            <div class="form-group">
+                                <label for="exampleFormControlInput2">Nazwisko: </label>
+                                <input type="text" formControlName = "lastName" class="form-control" id="exampleFormControlInput2" [ngClass]="{ 'is-invalid ng-invalid' : submitted && f.lastName.errors }">
+                                <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
+                                    <div *ngIf="f.lastName.errors">Nazwisko jest polem wymaganym i może zawierać jedynie litery alfabetu.</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-6 col-md-6 col-12">
+                            <div class="form-group">
+                                <label for="phone">Numer telefonu:</label>
+                                <input class="form-control" type="tel" name="phone"  formControlName = "phone" [ngClass]="{ 'is-invalid ng-invalid' : submitted && f.phone.errors }">
+                                <div *ngIf="submitted && f.phone.errors" class="invalid-feedback">
+                                    <div *ngIf="f.phone.errors">Numer telefonu składający się z 9 cyfr.</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-6 col-md-6 col-12">
+                            <div class="form-group">
+                                <label for="exampleFormControlEmail1">Email </label>
+                                <input type="email" formControlName = "email" class="form-control" id="exampleFormControlEmail1" [ngClass]="{ 'is-invalid ng-invalid' : submitted && f.email.errors }">
+                                <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                                    <div *ngIf="f.email.errors">Podany adres e-mail nie jest poprawnym adresem e-mail.</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label for="exampleFormControlTextarea1">Treść </label>
+                                <textarea class="form-control" formControlName = "content" id="exampleFormControlTextarea1" rows="4" [ngClass]="{ 'is-invalid ng-invalid' : submitted && f.content.errors }">
+                                </textarea>
+                                <div *ngIf="submitted && f.content.errors" class="invalid-feedback">
+                                    <div *ngIf="f.content.errors">Pole wymagane.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn-theme full">Wyślij</button>
+                    <div class="porazka" *ngIf="error">Popraw błędnie wypełnione dane!</div>
+                    <div class="sukces" *ngIf="succes">Wiadomość została wysłana!</div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>

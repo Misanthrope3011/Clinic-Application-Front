@@ -1,0 +1,36 @@
+label {
+	font-size: 16px;
+}
+input, textarea {
+	font-size: 14px;
+}
+.btn-theme {
+	font-size: 20px;
+	border-radius: 10px;
+	margin-right: 16px;
+	display: inline-block;
+	color: #fff;
+	background: transparent;
+	padding: 8px 20px;
+	text-decoration: none;
+	border: 1px solid #fff;
+	transition: .5s;
+	&:hover {
+		background: #28b9c0;
+		border: 1px solid #28b9c0;
+	}
+}
+.full {
+	background: #28b9c0;
+	border: 1px solid #28b9c0;
+	&:hover {
+		background: #fff;
+		border: 1px solid #28b9c0;
+		color: #28b9c0;
+	}
+}
+.news-creator {
+	padding: 20px;
+	box-shadow: 0 0 10px 2px #d5d5d5;
+	border-radius: 10px;
+}

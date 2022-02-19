@@ -1,0 +1,12 @@
+* {
+	font-size: 20px;
+}
+button {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	cursor: default !important;
+}
+.cursor-wrap {
+	cursor: pointer !important;
+}

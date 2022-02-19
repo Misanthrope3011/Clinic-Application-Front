@@ -1,0 +1,66 @@
+<section>
+	<div class="container">
+		<div class="row">
+			<div class="col-12 mb-3">
+				<h2>
+					Twoje finanse
+				</h2>
+			</div>
+			<div class="col-12">
+				<div class="finances-overall mb-5">
+					<div class="row">
+						<div class="col-12">
+							<div class="suma">
+								<div class="title">Podsumowanie kosztów leczenia:</div>
+								<div class="amount"><strong>{{finances?.Calosc}}</strong></div>
+							</div>
+						</div>
+						<div class="col-12">
+							<div class="what">
+								<div class="title">Opłacono:</div>
+								<div class="amount"><strong>{{finances?.Oplacone}}</strong></div>
+							</div>
+						</div>
+						<div class="col-12">
+							<div class="what-left">
+								<div class="title">Do zapłaty zostało:</div>
+								<div class="amount"><strong>{{finances?.Calosc - finances?.Oplacone}}</strong></div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-12 mb-5 finances-details notpaid">
+					<h3>Do zapłaty</h3>
+					<div class="row grube">
+						<div class="col-3 title">Badanie:</div>
+						<div class="col-3 date">Data:</div>
+						<div class="col-3 amount">Kwota:</div>
+						<div class="col-3 status">Status:</div>
+					</div>
+					<div class="row wyniki" *ngFor="let all of pending">	
+						<div class="col-3 title">{{all.medicalProcedure.name}}</div>
+						<div class="col-3 date">{{all.startDate | date: 'dd/MM/yy HH:mm'}}</div>
+						<div class="col-3 amount">{{all.medicalProcedure.price}}</div>
+						<div class="col-3 status">Nieopłacone</div>
+					</div>
+				</div>
+				<div class="col-12 finances-details paid">
+					<h3>Opłacone</h3>
+					<div class="row grube">
+						<div class="col-3 title">Badanie:</div>
+						<div class="col-3 date">Data:</div>
+						<div class="col-3 amount">Kwota:</div>
+						<div class="col-3 status">Status:</div>
+					</div>
+					<div class="row wyniki" *ngFor="let all of visits">
+						<div class="col-3 title">{{all.medicalProcedure.name}}</div>
+						<div class="col-3 date">{{all.startDate | date: 'dd/MM/yy HH:mm'}}</div>
+						<div class="col-3 amount">{{all.medicalProcedure.price}}</div>
+						<div class="col-3 status">Opłacone</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+

@@ -1,0 +1,29 @@
+<section class="prices">
+
+	<div class="container">
+		<div class="row">
+			<div class="col-12 mb-3">
+				<h2>Cennik</h2>
+			</div>
+			<div class="col-12">
+				<div class="tabela">
+					<div class="row">
+						<div class="col-12">
+							<div class="heading">
+								<h4 class="title_lable">Nazwa badania:</h4>
+								<h4 class="price_label">Cena:</h4>
+							</div>
+						</div>
+						<ng-container *ngFor="let finalResult of result | keyvalue">
+							<div class="col-12 badanie-cena">
+								<div class="title">{{ finalResult.key }}</div>
+								<div class="price">{{ finalResult.value }}</div>
+							</div>
+						</ng-container>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</section>

@@ -1,0 +1,87 @@
+<section class="form">
+
+  <div class="container">
+
+    <div class="row">
+      <div class="col-12 mb-3">
+        <h2>Formularz rejestracji</h2>
+      </div>
+      <div class="col-12">
+        <form class="form" [formGroup]="profileForm" (ngSubmit)="sendApi()" method = "post">
+          <div class="row">
+            <div class="col-xl-4 mb-3">
+              <label class="form-label">Imię</label>
+              <input formControlName="firstName" name="firstName" type="text" class="form-control" id="firstName" [ngClass]="{ 'is-invalid ng-invalid' : submitted && f.firstName.errors }">
+              <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
+                <div *ngIf="f.firstName.errors">Imię jest polem wymaganym i może zaweirać jedynie litery alfabetu.</div>
+              </div>
+            </div>
+            <div class="col-xl-4 mb-3">
+              <label class="form-label">Nazwisko</label>
+              <input formControlName="lastName" name="lastName" type="text" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }" id="lastName">
+              <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
+                <div *ngIf="f.lastName.errors">Nazwisko jest polem wymaganym i może zaweirać jedynie litery alfabetu.</div>
+              </div>
+            </div>
+            <div class="col-xl-4 mb-3">
+              <label class="form-label">E-mail</label>
+              <input formControlName="email" name="email" type="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" id="email" aria-describedby="emailHelp">
+              <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                <div *ngIf="f.email.errors.required">Adres e-mail jest polem wymaganym.</div>
+                <div *ngIf="f.email.errors.email">Podany adres e-mail nie jest poprawny.</div>
+              </div>
+            </div>
+            <div class="col-xl-4 mb-3">
+              <label class="form-label">Hasło</label>
+              <input formControlName="password" name="password" type="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" id="password">
+              <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                <div *ngIf="f.password.errors.required">Hasło jest polem wymaganym.</div>
+                <div *ngIf="f.password.errors.minlength">Hasło jest zbyt krótkie.</div>
+              </div>
+            </div>
+            <div class="col-xl-4 mb-3">
+              <label class="form-label">Miasto</label>
+              <input formControlName="city" name="city" type="text" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.city.errors }" id="city">
+              <div *ngIf="submitted && f.city.errors" class="invalid-feedback">
+                <div *ngIf="f.city.errors">Miasto jest polem wymaganym i może zawierać jedynie litery alfabetu.</div>
+              </div>
+            </div>
+            <div class="col-xl-4 mb-3">
+              <label class="form-label">Ulica</label>
+              <input formControlName="street" name="street" type="text" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.street.errors }" id="street">
+              <div *ngIf="submitted && f.street.errors" class="invalid-feedback">
+                <div *ngIf="f.street.errors.required">Ulica jest polem wymaganym.</div>
+              </div>
+            </div>
+            <div class="col-xl-4 mb-3">
+              <label class="form-label">Numer domu</label>
+              <input formControlName="homeNumber" name= "homeNumber" type="text" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.homeNumber.errors }" id="homeNumber">
+              <div *ngIf="submitted && f.homeNumber.errors" class="invalid-feedback">
+                <div *ngIf="f.homeNumber.errors.required">Numer domu jest polem wymaganym i może mieć maksymalnie 4 znaki.</div>
+              </div>
+            </div>
+            <div class="col-xl-4 mb-3">
+              <label class="form-label">Kod pocztowy</label>
+              <input formControlName="postalCode" name= "postalCode" type="text" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.postalCode.errors }" id="postalCode">
+              <div *ngIf="submitted && f.postalCode.errors" class="invalid-feedback">
+                <div *ngIf="f.postalCode.errors">Kod pocztowy jest polem wymaganym i musi być w formacie xx-xxx.</div>
+              </div>
+            </div>
+            <div class="col-xl-4 mb-3">
+              <label class="form-label">Pesel</label>
+              <input formControlName = "PESEL" name = "PESEL" type="number" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.PESEL.errors }" id="PESEL">
+              <div *ngIf="submitted && f.PESEL.errors" class="invalid-feedback">
+                <div *ngIf="f.PESEL.errors">PESEL jest polem wymaganym i musi składać się jedynie z 11 cyfr.</div>
+              </div>
+            </div>
+          </div>
+          <button type="submit" class="btn-theme full">Wyślij</button>
+          <div class="porazka" *ngIf="error">Popraw błędnie wypełnione dane!</div>
+          <div class="sukces" *ngIf="succes">Konto zostało utworzone! Możesz się zalogować.</div>
+        </form>
+      </div>
+    </div>
+
+  </div>
+  
+</section>

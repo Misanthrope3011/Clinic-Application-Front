@@ -1,0 +1,78 @@
+.visit-box{
+    padding: 20px;
+    box-shadow: 0 0 10px 2px #d5d5d5;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+.wartosc {
+    font-weight: 500;
+    margin-left: 8px;
+}
+.patient-name, .date, .badanie {
+    display: flex;
+}
+.badanie {
+    font-size: 24px;
+}
+.date, .patient-name {
+    font-size: 14px;
+    color: #fd863e;
+}
+.date {
+    color: #767676;
+}
+.etykieta {
+    font-size: 16px;
+    font-weight: 400;
+}
+textarea {
+    font-size: 16px;
+}
+.btn-theme {
+    margin-top: 16px;
+    font-size: 20px;
+    border-radius: 10px;
+    margin-right: 10px;
+    display: inline-block;
+    color: #fff;
+    background: transparent;
+    padding: 8px 20px;
+    text-decoration: none;
+    border: 1px solid #fff;
+    transition: .5s;
+}
+.blue {
+    color: #ffff;
+    background-color: #0dcaf0;
+    border-color: #0dcaf0;
+    &:hover {
+        color: #0dcaf0;
+    }
+}
+.full {
+    &:hover {
+        background: transparent;
+    }
+}
+input#isPaid {
+    width: 20px;
+    height: 20px;
+}
+.action {
+    display: flex;
+    margin-top: 16px;
+}
+.zaznaczajka {
+    display: flex;
+    align-items: center;
+    input {
+        margin: 0;
+        padding: 0;
+    }
+    label {
+        margin: 0;
+        padding: 0;
+        margin-left: 5px;
+        margin-top: 3px;
+    }
+}

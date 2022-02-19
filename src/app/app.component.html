@@ -1,0 +1,67 @@
+<div>
+  <div class="nav-bar">
+    <div class="container">
+      <div class="row">
+        <div class="col-xl-3 col-md-4 col-2">
+          <div class="brand">
+            <a routerLink="home">
+              <img src="{{logosrc}}" alt="{{logoaltsrc}}">
+            </a>
+          </div>
+        </div>
+        <div class="col-xl-9 col-md-8 col-10">
+          <div class="menu">
+            <a mat-button routerLink="/about-us">O nas</a>
+            <a mat-button routerLink="/prices">Cennik</a>
+            <a mat-button routerLink="/news">Aktualności</a>
+            <a mat-button routerLink="/contact">Kontakt</a>
+            <div *ngIf="!login"><a mat-button routerLink="/login">Login</a></div>
+            <div *ngIf="!login"><a mat-button routerLink="/signUp">Rejestracja</a></div>
+            <div *ngIf="login">
+              <app-dropdown [item]="avatar"></app-dropdown>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <router-outlet></router-outlet>
+  <div class="footer">
+    <div class="container">
+      <div class="row">
+        <div class="col-xl-6">
+          <div class="brand">
+            <a routerLink="home">
+              <img src="{{logosrc}}" alt="{{logoaltsrc}}">
+            </a>
+            <p>Posiadamy specjalistów w każdej dziedzinie, zawsze gotowi by odpowiedzieć na potrzeby naszych klientów. Zaopiekujemy się Tobą i Twoją rodziną!</p>
+          </div>
+        </div>
+        <div class="col-xl-3">
+          <div class="footer-menu">
+            <h3>Przydatne linki:</h3>
+            <a routerLink="/about-us">O nas</a>
+            <a routerLink="/prices">Cennik</a>
+            <a routerLink="/news">Aktualności</a>
+            <a routerLink="/contact">Kontakt</a>
+            <a href="#">Regulamin</a>
+            <a href="#">Polityka prywatności</a>
+            <a href="#">pacjent.gov.pl</a>
+          </div>
+        </div>
+        <div class="col-xl-3">
+          <h3>Dane kontaktowe:</h3>
+          <div class="contact">
+            <img src="/assets/img/phone.svg" t=""><p>+48 123 321 768</p>
+          </div>
+          <div class="contact">
+            <img src="/assets/img/mail.svg" alt=""><p>biuro@przychodnia.pl</p>
+          </div>
+          <div class="contact">
+            <img src="/assets/img/adress.svg" alt=""><p>ul. Lubartowska 1<br>20-115 Lublin</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

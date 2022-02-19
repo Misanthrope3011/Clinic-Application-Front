@@ -1,0 +1,65 @@
+<h3> Nasza załoga </h3>
+
+
+  <div class="col-12">
+    <div class="admin-panel">
+        <div class="single_patient mb-4" *ngFor="let doctor of doctors; let i = index">
+            <div class="col-12">
+                <div class="row">
+                    <div class="col-xl-4 col-md-6 col-12">
+                        <div class="plaque">
+                            <div class="etykieta">ID:</div>
+                            <div class="value"> <img src = 'data:image/png;base64,{{doctor.image}}' > </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-md-6 col-12">
+                        <div class="plaque">
+                            <div class="etykieta">Imię:</div>
+                            <div class="value">{{doctor.name}}</div>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-md-6 col-12">
+                        <div class="plaque">
+                            <div class="etykieta">Nazwisko:</div>
+                            <div class="value">{{doctor.last_name}}</div>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-md-6 col-12">
+                        <div class="plaque">
+                            <div class="etykieta">Specjalizacja:</div>
+                            <div class="value">{{doctor.doctor_specialization?.specialization_name}}</div>
+                        </div>
+                    </div>  
+                    <div class="col-xl-4 col-md-6 col-12">
+                        <div class="plaque">
+                            <div class="etykieta">Średnia ocena doktora:</div>
+                            <div class="value">{{doctor.averageRatings}}</div>
+                        </div>
+                    </div>  
+                    <div class="col-xl-4 col-md-6 col-12">
+                        <div class="plaque">
+                            <div class="etykieta">Moja ocena:</div>
+                            <div class="value">{{doctor.rating}}</div>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-md-6 col-12">
+                        <div class="plaque">
+                            <div class="etykieta">Moja ocena:</div>
+                            <select [(ngModel)]='doctors[i].rating' class='form-control' value = 'doctors[i].rating' (change) = "changeRate(i)">
+                                <option value ='1'>1 </option>
+                                <option value='1.5'>1.5</option>
+                                <option value='2'>2</option>
+                                <option value='2.5'>2.5</option>
+                                <option value='3'>3</option>
+                                <option value='3.5'>3.5</option>
+                                <option value='4'>4</option>
+                                <option value='4.5'>4.5</option>
+                                <option value='5'>5</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

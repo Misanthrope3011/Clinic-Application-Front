@@ -1,0 +1,27 @@
+<div class="dropdown">
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">KONTO</button>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <p>Zalogowano: <span>{{roleSpecificInfo.name}}</span></p>
+        <div class="menu-btn" *ngIf="!hasAdminRole"><a class="dropdown-item" routerLink="/profile">Profil użytkownika</a></div>
+        <div *ngIf="hasDoctorRole || hasPatientRole" class="menu-btn"><a class="dropdown-item" routerLink="/edit/{{this.currentUser.id}}">Edytuj dane</a></div>
+        <div *ngIf="hasPatientRole">
+            <div class="menu-btn"><a class="dropdown-item" [routerLink]="['patient/newVisit']">Nowa wizyta</a></div>
+            <div class="menu-btn"><a class="dropdown-item" routerLink="patient/getVisits">Podgląd wizyt</a></div>
+            <div class="menu-btn"><a class="dropdown-item" routerLink="patient/finances">Podgląd należności</a></div>
+            <div class="menu-btn"><a class="dropdown-item" routerLink="patient/rate">Oceń załogę</a></div>
+
+        </div>
+        <div *ngIf="hasDoctorRole">
+            <div class="menu-btn"><a class="dropdown-item" routerLink="doctor/panel">Zarządzanie pacjentami</a></div>
+            <div class="menu-btn"><a class="dropdown-item" routerLink="doctor/getVisits">Podgląd wizyt</a></div>
+            <div class="menu-btn"><a class="dropdown-item" routerLink="doctor/getAbandoned">Odwołane</a></div>
+        </div>
+        <div *ngIf="hasAdminRole">
+            <div class="menu-btn"><a class="dropdown-item" routerLink="admin/addNews">Dodaj aktualności</a></div>
+            <div class="menu-btn"><a class="dropdown-item" routerLink="admin">Zarządzanie użytkownikami</a></div>
+        </div>
+        <div class="menu-btn logout"><a class="dropdown-item" (click)="logout()" href="#">Wyloguj</a></div>
+    </div>
+    <ng-container *ngIf = "setDefault; else avatar" class="icon-box"><img src="/assets/img/boy.png" alt=""></ng-container>
+    <ng-template #avatar class="icon-box"> <img src = 'data:image/png;base64,{{currentUser.image}}'></ng-template>
+</div>

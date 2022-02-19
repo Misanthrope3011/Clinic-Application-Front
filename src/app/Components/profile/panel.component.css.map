@@ -1,0 +1,7 @@
+{
+    "version": 3,
+    "mappings": "AAAA,OAAQ,CACN,WAAW,CAAE,KAAK,CAEpB,QAAS,CACL,UAAU,CAAE,8BAAiC,CAC7C,OAAO,CAAE,IAAI,CACb,iBAAS,CACL,OAAO,CAAE,IAAI,CACb,KAAK,CAAE,IAAI,CACX,eAAe,CAAE,aAAa",
+    "sources": ["panel.component.scss"],
+    "names": [],
+    "file": "profile.component.css"
+    }

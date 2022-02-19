@@ -1,0 +1,26 @@
+<section class="form">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 mb-3">
+        <h2>Logowanie</h2>
+      </div>
+      <div class="col-12">
+        <form class="form" [formGroup]="loginRequest" (ngSubmit)="login()" method = "post">
+          <div class="row">
+            <div class="col-12 mb-3">
+              <label class="form-label">Login</label>
+              <input formControlName="username" pattern="[a-zA-Z ]{4,30}" name="username" type="text" class="form-control" id="username" >
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12 mb-3">
+              <label class="form-label">Hasło</label>
+              <input formControlName="password" pattern="[a-zA-Z ]{4,30}" name="password" type="password" class="form-control" id="password" >
+            </div>
+          </div>
+          <button type="submit" class="btn-theme full">Wyślij</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>

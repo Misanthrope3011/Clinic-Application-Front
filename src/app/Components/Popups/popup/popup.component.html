@@ -1,0 +1,8 @@
+<p>{{componentResponse}}</p>
+
+<mat-dialog-actions *ngIf="componentResponse ==='Zalogowano pomyślnie' " align="center">
+    <button mat-button [mat-dialog-close]="true" cdkFocusInitial (click)="refresh()"><span class="cursor-wrap">Zamknij</span></button>
+</mat-dialog-actions>
+<mat-dialog-actions *ngIf="componentResponse ==='Błędne logowanie' " align="center">
+    <button mat-button [mat-dialog-close]="true" cdkFocusInitial><span class="cursor-wrap">Zamknij</span></button>
+</mat-dialog-actions>
