@@ -1,58 +1,66 @@
 <section class="visit">
-	<div class="container">
-		<div class="row">
-			<div class="col-12 mb-3">
-				<h2>Rejestracja wizyty</h2>
-			</div>
-			<div class="col-12">
-				<form [formGroup]="medicalVisit" (ngSubmit)="sendVisitRequest()">
-					<div class="row">
-						<div class="col-xl-6 col-md-6 col-12 mb-4">
-							<label for="data">Dzień</label>
-							<input class="form-select" (change)="somethingChanged()" formControlName = "day" id="data" type="date" min="{{ date | date:'yyyy-MM-dd'}}" max="2022-12-31" [ngClass]="{ 'is-invalid ng-invalid' : submitted && f.day.errors }">
-							<div *ngIf="submitted && f.day.errors" class="invalid-feedback">
-								<div *ngIf="f.day.errors">Pole nie zostało wypełnione!</div>
-							</div>
-						</div>
-						<div class="col-xl-6 col-md-6 col-12 mb-4">
-							<label for="hour">Godzina</label>
-							<select id="hour" formControlName = "visit_start" class="form-select" aria-label="Default select example" [ngClass]="{ 'is-invalid ng-invalid' : submitted && f.visit_start.errors }">
-								<ng-container *ngFor="let results of listOfHours; let i = index">
-									<option value="{{ results }}" [selected] = "i == 0">{{ results }}</option>
-								</ng-container>
-							</select>
-							<div *ngIf="submitted && f.visit_start.errors" class="invalid-feedback">
-								<div *ngIf="f.visit_start.errors">Pole nie zostało wypełnione!</div>
-							</div>
-						</div>
-						<div class="col-xl-6 col-md-6 col-12 mb-4">
-							<label for="doctor">Doktor</label>
-							<select id="doctor" (change)="somethingChanged()" formControlName = "doctor_id" class="form-select" aria-label="Default select example" [ngClass]="{ 'is-invalid ng-invalid' : submitted && f.visit_start.errors }">
-								<ng-container *ngFor="let results of result;let i = index">
-									<option value="{{ results.id }}" [selected] = "i == 1">{{ results.name }} {{ results.last_name }}</option>
-								</ng-container>
-							</select>
-							<div *ngIf="submitted && f.doctor_id.errors" class="invalid-feedback">
-								<div *ngIf="f.doctor_id.errors">Pole nie zostało wypełnione!</div>
-							</div>
-						</div>
-						<div class="col-xl-6 col-md-6 col-12 mb-4">
-							<label for="badanie">Badanie</label>
-							<select id="badanie"  formControlName = "id_procedure" class="form-select" aria-label="Default select example" [ngClass]="{ 'is-invalid ng-invalid' : submitted && f.visit_start.errors }">
-								<ng-container *ngFor="let procedure of procedures; let i = index">
-									<option value="{{ procedure.id }}" [selected] = "i == 0">{{ procedure.name }}</option>
-								</ng-container>
-							</select>
-							<div *ngIf="submitted && f.id_procedure.errors" class="invalid-feedback">
-								<div *ngIf="f.id_procedure.errors">Pole nie zostało wypełnione!</div>
-							</div>
-						</div>
-					</div>
-					<button type="submit" class="btn-theme full">Rejestruj</button>
-					<div class="porazka" *ngIf="error">Popraw błędnie wypełnione dane!</div>
-					<div class="sukces" *ngIf="success">Wizyta została zarejestrowana.</div>
-				</form>
-			</div>
-		</div>
-	</div>
+  <div class="container">
+    <div class="row">
+      <div class="col-12 mb-3">
+        <h2>Rejestracja wizyty</h2>
+      </div>
+      <div class="col-12">
+        <form (ngSubmit)="sendVisitRequest()" [formGroup]="medicalVisit">
+          <div class="row">
+            <div class="col-xl-6 col-md-6 col-12 mb-4">
+              <label for="data">Dzień</label>
+              <input (change)="somethingChanged()" [ngClass]="{ 'is-invalid ng-invalid' : submitted && f.day.errors }" class="form-select" formControlName="day" id="data"
+                     max="2022-12-31" min="{{ date | date:'yyyy-MM-dd'}}"
+                     type="date">
+              <div *ngIf="submitted && f.day.errors" class="invalid-feedback">
+                <div *ngIf="f.day.errors">Pole nie zostało wypełnione!</div>
+              </div>
+            </div>
+            <div class="col-xl-6 col-md-6 col-12 mb-4">
+              <label for="hour">Godzina</label>
+              <select [ngClass]="{ 'is-invalid ng-invalid' : submitted && f.visit_start.errors }" aria-label="Default select example" class="form-select" formControlName="visit_start"
+                      id="hour">
+                <ng-container *ngFor="let results of listOfHours; let i = index">
+                  <option [selected]="i == 0" value="{{ results }}">{{ results }}</option>
+                </ng-container>
+              </select>
+              <div *ngIf="submitted && f.visit_start.errors" class="invalid-feedback">
+                <div *ngIf="f.visit_start.errors">Pole nie zostało wypełnione!</div>
+              </div>
+            </div>
+            <div class="col-xl-6 col-md-6 col-12 mb-4">
+              <label for="doctor">Doktor</label>
+              <select (change)="somethingChanged()" [ngClass]="{ 'is-invalid ng-invalid' : submitted && f.visit_start.errors }" aria-label="Default select example" class="form-select"
+                      formControlName="doctor_id"
+                      id="doctor">
+                <ng-container *ngFor="let results of result;let i = index">
+                  <option [selected]="i == 1"
+                          value="{{ results.id }}">{{ results.name }} {{ results.last_name }}</option>
+                </ng-container>
+              </select>
+              <div *ngIf="submitted && f.doctor_id.errors" class="invalid-feedback">
+                <div *ngIf="f.doctor_id.errors">Pole nie zostało wypełnione!</div>
+              </div>
+            </div>
+            <div class="col-xl-6 col-md-6 col-12 mb-4">
+              <label for="badanie">Badanie</label>
+              <select [ngClass]="{ 'is-invalid ng-invalid' : submitted && f.visit_start.errors }" aria-label="Default select example" class="form-select"
+                      formControlName="id_procedure"
+                      id="badanie">
+                <ng-container *ngFor="let procedure of procedures; let i = index">
+                  <option [selected]="i == 0" value="{{ procedure.id }}">{{ procedure.name }}</option>
+                </ng-container>
+              </select>
+              <div *ngIf="submitted && f.id_procedure.errors" class="invalid-feedback">
+                <div *ngIf="f.id_procedure.errors">Pole nie zostało wypełnione!</div>
+              </div>
+            </div>
+          </div>
+          <button class="btn-theme full" type="submit">Rejestruj</button>
+          <div *ngIf="error" class="porazka">Popraw błędnie wypełnione dane!</div>
+          <div *ngIf="success" class="sukces">Wizyta została zarejestrowana.</div>
+        </form>
+      </div>
+    </div>
+  </div>
 </section>

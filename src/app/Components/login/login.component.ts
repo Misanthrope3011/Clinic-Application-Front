@@ -1,11 +1,10 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { FetchUsersInfoService } from 'src/app/services/fetch-users-info.service';
-import { User} from '../../../Prototypes/User'
-import { Patient} from '../../../Prototypes/Patient'
-import { FormControl, FormBuilder } from '@angular/forms';
-import { FormGroup, Validators } from '@angular/forms';
-import { TokenStorageService } from '../../services/tokenstorage.service'
-import { Router } from '@angular/router';
+import {Component, OnInit} from '@angular/core';
+import {FetchUsersInfoService} from 'src/app/services/fetch-users-info.service';
+import {User} from '../../../Prototypes/User'
+import {Patient} from '../../../Prototypes/Patient'
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {TokenStorageService} from '../../services/tokenstorage.service'
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -20,14 +19,6 @@ export class LoginComponent implements OnInit {
   error = false;
   succes = false;
   seerviceStatus: any;
-  
-  get f() { return this.profileForm.controls; }
-
-  constructor(private fetchService: FetchUsersInfoService, private formBuilder: FormBuilder,  private tokenStorage: TokenStorageService, private router: Router) { 
-    this.user = new User();
-    this.patient = new Patient();
-  }
-
   profileForm = new FormGroup({
     firstName: new FormControl(''),
     lastName: new FormControl(''),
@@ -39,6 +30,15 @@ export class LoginComponent implements OnInit {
     postalCode: new FormControl(''),
     PESEL: new FormControl('')
   });
+
+  constructor(private fetchService: FetchUsersInfoService, private formBuilder: FormBuilder, private tokenStorage: TokenStorageService, private router: Router) {
+    this.user = new User();
+    this.patient = new Patient();
+  }
+
+  get f() {
+    return this.profileForm.controls;
+  }
 
   ngOnInit(): void {
 
@@ -53,17 +53,15 @@ export class LoginComponent implements OnInit {
       postalCode: ['', [Validators.required, Validators.pattern('[0-9]{2}\-[0-9]{3}')]],
       PESEL: ['', [Validators.required, Validators.pattern('[0-9]{11}')]]
     });
-    
+
   }
 
   sendApi() {
     this.submitted = true;
-    if (this.profileForm.invalid)
-    {
+    if (this.profileForm.invalid) {
       this.error = true;
       this.succes = false;
-    }
-    else {
+    } else {
 
       this.submitted = false;
       this.user.sign_up_date = new Date();
@@ -77,25 +75,24 @@ export class LoginComponent implements OnInit {
       this.patient.postal_code = this.profileForm.controls['postalCode'].value;
       this.patient.PESEL = this.profileForm.controls['PESEL'].value;
 
-      this.fetchService.sendForm(this.user).subscribe(data =>
-      {
-       this.seerviceStatus = data;
-       this.patient.user_id = data.body.id;
+      this.fetchService.sendForm(this.user).subscribe(data => {
+          this.seerviceStatus = data;
+          this.patient.user_id = data.body.id;
 
-       this.fetchService.sendPatientInfo(this.patient).subscribe(data => {
-         console.log(data);
-         //this.router.navigate(['login']);
-       })
-     }, err => console.log(err)
-     )
+          this.fetchService.sendPatientInfo(this.patient).subscribe(data => {
+            console.log(data);
+            //this.router.navigate(['login']);
+          })
+        }, err => console.log(err)
+      )
 
       this.profileForm.reset();
-      this.profileForm.setErrors({ 'invalid': true });
+      this.profileForm.setErrors({'invalid': true});
       this.submitted = false;
       this.error = false;
       this.succes = true;
     }
-    
+
   }
 
 }

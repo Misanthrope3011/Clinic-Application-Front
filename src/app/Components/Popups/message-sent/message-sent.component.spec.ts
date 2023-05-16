@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { MessageSentComponent } from './message-sent.component';
+import {MessageSentComponent} from './message-sent.component';
 
 describe('MessageSentComponent', () => {
   let component: MessageSentComponent;
@@ -8,9 +8,9 @@ describe('MessageSentComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ MessageSentComponent ]
+      declarations: [MessageSentComponent]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

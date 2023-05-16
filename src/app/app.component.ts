@@ -1,9 +1,8 @@
-import { Component, Input } from '@angular/core';
-import { FetchUsersInfoService } from './services/fetch-users-info.service';
-import { HttpClient } from '@angular/common/http';
-import { Router } from '@angular/router';
-import { TokenStorageService } from './services/tokenstorage.service';
-import { MatButtonModule } from '@angular/material/button';
+import {Component, Input} from '@angular/core';
+import {FetchUsersInfoService} from './services/fetch-users-info.service';
+import {HttpClient} from '@angular/common/http';
+import {Router} from '@angular/router';
+import {TokenStorageService} from './services/tokenstorage.service';
 
 
 @Component({
@@ -16,35 +15,30 @@ export class AppComponent {
   info: any;
   logosrc = '/assets/img/logo.png';
   logoaltsrc = 'logotyp';
-  login = false; 
-
-  constructor(private fetchService: FetchUsersInfoService, private http: HttpClient, private router:Router, private tokenStorage: TokenStorageService) {
- 
-  }     
-
+  login = false;
   @Input()
   avatar: any;
 
+  constructor(private fetchService: FetchUsersInfoService, private http: HttpClient, private router: Router, private tokenStorage: TokenStorageService) {
+
+  }
 
   ngOnInit(): void {
-   
+
     this.info = this.fetchService.getUsers();
-   const user = JSON.parse(window.localStorage.getItem('auth-user'));
-   if(this.tokenStorage.isLoggedIn()) {
-     this.login = true;
-   } else {
-     this.login = false;
-   }
+    const user = JSON.parse(window.localStorage.getItem('auth-user'));
+    if (this.tokenStorage.isLoggedIn()) {
+      this.login = true;
+    } else {
+      this.login = false;
+    }
 
- }
-
- 
- logout() {
-  return this.tokenStorage.signOut();
-}
+  }
 
 
-
+  logout() {
+    return this.tokenStorage.signOut();
+  }
 
 
 }

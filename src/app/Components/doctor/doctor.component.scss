@@ -1,62 +1,74 @@
 .single_patient {
-	padding: 20px;
-	box-shadow: 0 0 10px 2px #d5d5d5;
-	border-radius: 10px;
-	transition: .5s;
-	&:hover {
-		box-shadow: 0 0 10px 5px #d5d5d5;
-	}
+  padding: 20px;
+  box-shadow: 0 0 10px 2px #d5d5d5;
+  border-radius: 10px;
+  transition: .5s;
+
+  &:hover {
+    box-shadow: 0 0 10px 5px #d5d5d5;
+  }
 }
+
 .plaque {
-	* {
-		font-size: 16px;
-	}
-	.value {
-		font-size: 18px;
-		margin-left: 5px;
-		font-weight: 500;
-	}
-	display: flex;
+  * {
+    font-size: 16px;
+  }
+
+  .value {
+    font-size: 18px;
+    margin-left: 5px;
+    font-weight: 500;
+  }
+
+  display: flex;
 }
+
 .btn-theme {
-	margin-top: 10px;
-	font-size: 20px;
-	border-radius: 10px;
-	margin-right: 10px;
-	display: inline-block;
-	color: #fff;
-	background: transparent;
-	padding: 8px 20px;
-	text-decoration: none;
-	border: 1px solid #fff;
-	transition: .5s;
+  margin-top: 10px;
+  font-size: 20px;
+  border-radius: 10px;
+  margin-right: 10px;
+  display: inline-block;
+  color: #fff;
+  background: transparent;
+  padding: 8px 20px;
+  text-decoration: none;
+  border: 1px solid #fff;
+  transition: .5s;
 }
+
 .full {
-	&:hover {
-		background: transparent;
-	}
+  &:hover {
+    background: transparent;
+  }
 }
+
 .red {
-	color: #fff;
-	background-color: #dc3545;
-	border-color: #dc3545;
-	&:hover {
-		color: #dc3545;
-	}
+  color: #fff;
+  background-color: #dc3545;
+  border-color: #dc3545;
+
+  &:hover {
+    color: #dc3545;
+  }
 }
+
 .yellow {
-	color: #fff;
-	background-color: #ffc107;
-	border-color: #ffc107;
-	&:hover {
-		color: #ffc107;
-	}
+  color: #fff;
+  background-color: #ffc107;
+  border-color: #ffc107;
+
+  &:hover {
+    color: #ffc107;
+  }
 }
+
 .blue {
-	color: #ffff;
-	background-color: #0dcaf0;
-	border-color: #0dcaf0;
-	&:hover {
-		color: #0dcaf0;
-	}
+  color: #ffff;
+  background-color: #0dcaf0;
+  border-color: #0dcaf0;
+
+  &:hover {
+    color: #0dcaf0;
+  }
 }

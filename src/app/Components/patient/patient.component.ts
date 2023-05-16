@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FetchUsersInfoService} from '../../services/fetch-users-info.service'
 import {TokenStorageService} from '../../services/tokenstorage.service'
 
@@ -12,7 +12,8 @@ export class PatientComponent implements OnInit {
 
   content;
 
-  constructor(private fetchService: FetchUsersInfoService, private tokenStorage: TokenStorageService) { }
+  constructor(private fetchService: FetchUsersInfoService, private tokenStorage: TokenStorageService) {
+  }
 
 
   ngOnInit(): void {

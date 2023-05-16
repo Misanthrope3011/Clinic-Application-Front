@@ -1,85 +1,85 @@
 <section class="form">
 
-	<div class="container">
-		<div class="row">
-			<div class="col-12 mb-3">
-				<h2>Dane osobowe:</h2>
-			</div>
-		</div>
-		<div class="col-12">
-			<div class="profile-info">
-				<div *ngIf="!isPatient">   
-					<div class="col-12">
-						<div class="namebox">
-							<div class="name">Imię:</div>
-							<div class="value">{{roleSpecificInfo.name}}</div>
-						</div>
-					</div>
-					<div class="col-12">
-						<div class="namebox">
-							<div class="name">Nazwisko:</div>
-							<div class="value">{{roleSpecificInfo.last_name}}</div>
-						</div>
-					</div>
-					<div class="col-12">
-						<div class="namebox">
-							<div class="name">E-mail:</div>
-							<div class="value">{{profileInfo.email}}</div>
-						</div>
-					</div>
-					<div class="col-12">
-						<div class="namebox">
-							<div class="name">Miasto:</div>
-							<div class="value">{{roleSpecificInfo.city}}</div>
-						</div>
-					</div>
-					<div class="col-12">
-						<div class="namebox">
-							<div class="name">Ulica:</div>
-							<div class="value">{{roleSpecificInfo.street}}</div>
-						</div>
-					</div>
-					<div class="col-12">
-						<div class="namebox">
-							<div class="name">Numer domu:</div>
-							<div class="value">{{roleSpecificInfo.home_number}}</div>
-						</div>
-					</div>
-					<div class="col-12">
-						<div class="namebox">
-							<div class="name">Kod pocztowy:</div>
-							<div class="value">{{roleSpecificInfo.postal_code}}</div>
-						</div>
-					</div>
-					<div class="col-12">
-						<div class="namebox">
-							<div class="name">Pesel:</div>
-							<div class="value">{{roleSpecificInfo.pesel}}</div>
-						</div>
-					</div>
-				</div>
-				<div *ngIf="isPatient">
-					<div class="col-12">
-						<div class="namebox">
-							<div class="name">Imię:</div>
-							<div class="value">{{roleSpecificInfo.name}}</div>
-						</div>
-					</div>
-					<div class="col-12">
-						<div class="namebox">
-							<div class="name">Nazwisko:</div>
-							<div class="value">{{roleSpecificInfo.last_name}}</div>
-						</div>
-					</div>
-					<div class="col-12">
-						<div class="namebox">
-							<div class="name">Specjalizacja:</div>
-							<div class="value">{{roleSpecificInfo.doctor_specialization.specialization_name}}</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+  <div class="container">
+    <div class="row">
+      <div class="col-12 mb-3">
+        <h2>Dane osobowe:</h2>
+      </div>
+    </div>
+    <div class="col-12">
+      <div class="profile-info">
+        <div *ngIf="!isPatient">
+          <div class="col-12">
+            <div class="namebox">
+              <div class="name">Imię:</div>
+              <div class="value">{{roleSpecificInfo.name}}</div>
+            </div>
+          </div>
+          <div class="col-12">
+            <div class="namebox">
+              <div class="name">Nazwisko:</div>
+              <div class="value">{{roleSpecificInfo.last_name}}</div>
+            </div>
+          </div>
+          <div class="col-12">
+            <div class="namebox">
+              <div class="name">E-mail:</div>
+              <div class="value">{{profileInfo.email}}</div>
+            </div>
+          </div>
+          <div class="col-12">
+            <div class="namebox">
+              <div class="name">Miasto:</div>
+              <div class="value">{{roleSpecificInfo.city}}</div>
+            </div>
+          </div>
+          <div class="col-12">
+            <div class="namebox">
+              <div class="name">Ulica:</div>
+              <div class="value">{{roleSpecificInfo.street}}</div>
+            </div>
+          </div>
+          <div class="col-12">
+            <div class="namebox">
+              <div class="name">Numer domu:</div>
+              <div class="value">{{roleSpecificInfo.home_number}}</div>
+            </div>
+          </div>
+          <div class="col-12">
+            <div class="namebox">
+              <div class="name">Kod pocztowy:</div>
+              <div class="value">{{roleSpecificInfo.postal_code}}</div>
+            </div>
+          </div>
+          <div class="col-12">
+            <div class="namebox">
+              <div class="name">Pesel:</div>
+              <div class="value">{{roleSpecificInfo.pesel}}</div>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="isPatient">
+          <div class="col-12">
+            <div class="namebox">
+              <div class="name">Imię:</div>
+              <div class="value">{{roleSpecificInfo.name}}</div>
+            </div>
+          </div>
+          <div class="col-12">
+            <div class="namebox">
+              <div class="name">Nazwisko:</div>
+              <div class="value">{{roleSpecificInfo.last_name}}</div>
+            </div>
+          </div>
+          <div class="col-12">
+            <div class="namebox">
+              <div class="name">Specjalizacja:</div>
+              <div class="value">{{roleSpecificInfo.doctor_specialization.specialization_name}}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
 </section>

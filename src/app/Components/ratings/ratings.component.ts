@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { DoctorManagerService } from 'src/app/services/doctor-manager.service';
-import { TokenStorageService } from 'src/app/services/tokenstorage.service';
-import {FormGroup, FormControl, FormBuilder} from '@angular/forms';
+import {Component, OnInit} from '@angular/core';
+import {DoctorManagerService} from 'src/app/services/doctor-manager.service';
+import {TokenStorageService} from 'src/app/services/tokenstorage.service';
+import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
 
 @Component({
   selector: 'app-ratings',
@@ -10,11 +10,7 @@ import {FormGroup, FormControl, FormBuilder} from '@angular/forms';
 })
 export class RatingsComponent implements OnInit {
 
-  constructor(private doctorManager: DoctorManagerService, private tokenStorage: TokenStorageService,
-     private formBuilder: FormBuilder) { }
-
   doctors: any;
-
   ratingDTO = new FormGroup({
     rateId: new FormControl(''),
     rating: new FormControl(''),
@@ -22,7 +18,9 @@ export class RatingsComponent implements OnInit {
     doctor_id: new FormControl('')
   });
 
-
+  constructor(private doctorManager: DoctorManagerService, private tokenStorage: TokenStorageService,
+              private formBuilder: FormBuilder) {
+  }
 
   ngOnInit(): void {
     this.doctorManager.getDoctors().subscribe(err => {
@@ -30,17 +28,17 @@ export class RatingsComponent implements OnInit {
 
       this.doctorManager.getRating().subscribe(err => {
 
-        for(let i = 0; i < this.doctors.length; i++) {
+        for (let i = 0; i < this.doctors.length; i++) {
           this.doctors[i].averageRatings = err[i];
         }
       })
 
       this.doctorManager.getUserRates(this.tokenStorage.getUser().body.patient.id).subscribe(
         err => {
-          for(let i = 0; i < this.doctors.length; i++) {
-            if(err[i] != null) {
-            this.doctors[i].rating = err[i].rating;
-            this.doctors[i].rateId = err[i].id;
+          for (let i = 0; i < this.doctors.length; i++) {
+            if (err[i] != null) {
+              this.doctors[i].rating = err[i].rating;
+              this.doctors[i].rateId = err[i].id;
             } else {
               this.doctors[i].rating = 0;
               this.doctors[i].rateId = -1;
@@ -58,10 +56,10 @@ export class RatingsComponent implements OnInit {
       rate: [parseFloat(this.doctors[index].rating)],
       patient_id: [this.tokenStorage.getUser().body.patient.id],
       doctor_id: [this.doctors[index].id],
-  });
+    });
 
-  this.doctorManager.updateRate(this.doctors[index].rateId, this.ratingDTO)
-                              .subscribe(err => console.log(err));
+    this.doctorManager.updateRate(this.doctors[index].rateId, this.ratingDTO)
+      .subscribe(err => console.log(err));
 
   }
 

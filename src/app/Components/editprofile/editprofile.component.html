@@ -1,97 +1,117 @@
 <section>
-	<div class="container">
-		<div class="row">
-			<div class="col-12 mb-3">
-				<h2>Edycja danych</h2>
-			</div>
-			<div class="col-12">
-				<form *ngIf="hasPatientRole || isDoctorEdition" [formGroup]="editProfile" (ngSubmit) = "edit()" method = "put">
-					<div class="row">
-						<div class="col-xl-4 mb-3">
-							
-							<label class="form-label">Imię</label>
-							<input formControlName="firstName" name="name" type="text" class="form-control" id="name" [ngClass]="{ 'is-invalid ng-invalid' : submitted && f.firstName.errors }">
-							<div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
-								<div *ngIf="f.firstName.errors">Imię jest polem wymaganym i może zaweirać jedynie litery alfabetu.</div>
-							</div>
-						</div>
-						
-						<div class="col-xl-4 mb-3">
-							<label class="form-label">Nazwisko</label>
-							<input value="{{userData.last_name}}" formControlName="lastName" name="last_name" type="text" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }" id="last_name">
-							<div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
-								<div *ngIf="f.lastName.errors">Nazwisko jest polem wymaganym i może zaweirać jedynie litery alfabetu.</div>
-							</div>
-						</div>
-						<div class="col-xl-4 mb-3">
-							<label class="form-label">Miasto</label>
-							<input value="{{userData.city}}" formControlName="city" name="city" type="text" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.city.errors }" id="city">
-							<div *ngIf="submitted && f.city.errors" class="invalid-feedback">
-								<div *ngIf="f.city.errors">Miasto jest polem wymaganym i może zawierać jedynie litery alfabetu.</div>
-							</div>
-						</div>
-						<div class="col-xl-4 mb-3">
-							<label class="form-label">Ulica</label>
-							<input value="{{userData.street}}" formControlName="street" name="street" type="text" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.street.errors }" id="street">
-							<div *ngIf="submitted && f.street.errors" class="invalid-feedback">
-								<div *ngIf="f.street.errors.required">Ulica jest polem wymaganym.</div>
-							</div>
-						</div>
-						<div class="col-xl-4 mb-3">
-							<label class="form-label">Numer domu</label>
-							<input value="{{userData.homeNumber}}" formControlName="homeNumber" name= "homeNumber" type="text" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.homeNumber.errors }" id="homeNumber">
-							<div *ngIf="submitted && f.homeNumber.errors" class="invalid-feedback">
-								<div *ngIf="f.homeNumber.errors.required">Numer domu jest polem wymaganym i może mieć maksymalnie 4 znaki.</div>
-							</div>
-						</div>
-						<div class="col-xl-4 mb-3">
-							<label class="form-label">Kod pocztowy</label>
-							<input value="{{userData.postalCode}}" formControlName="postalCode" name= "postalCode" type="text" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.postalCode.errors }" id="postalCode">
-							<div *ngIf="submitted && f.postalCode.errors" class="invalid-feedback">
-								<div *ngIf="f.postalCode.errors">Kod pocztowy jest polem wymaganym i musi być w formacie xx-xxx.</div>
-							</div>
-						</div>
-						<div class="col-xl-4 mb-3">
-							<label class="form-label">Pesel</label>
-							<input value="{{userData.PESEL}}" formControlName = "PESEL" name = "PESEL" type="number" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.PESEL.errors }" id="PESEL">
-							<div *ngIf="submitted && f.PESEL.errors" class="invalid-feedback">
-								<div *ngIf="f.PESEL.errors">PESEL jest polem wymaganym i musi składać się jedynie z 11 cyfr</div>
-							</div>
-						</div>
-					</div>
-					<button type="submit" class="btn-theme full">Wyślij</button>
-					<div class="porazka" *ngIf="error">Popraw błędnie wypełnione dane!</div>
-					<div class="sukces" *ngIf="succes">Dane zostały zaaktualizowane poprawnie.</div>
-				</form>
-				<form *ngIf="hasDoctorRole && !isDoctorEdition" [formGroup]="editProfileDoctor"  (ngSubmit) = "edit()" method = "put">
-					<div class="row">
-						<div class="col-xl-4 mb-3">
-							<label class="form-label">Imię</label>
-							<input value="{{userData.name}}" formControlName="firstName" name="name" type="text" class="form-control" id="name" [ngClass]="{ 'is-invalid ng-invalid' : submitted && k.firstName.errors }">
-							<div *ngIf="submitted && k.firstName.errors" class="invalid-feedback">
-								<div *ngIf="k.firstName.errors">Imię jest polem wymaganym i może zaweirać jedynie litery alfabetu.</div>
-							</div>
-						</div>
-						<div class="col-xl-4 mb-3">
-							<label class="form-label">Nazwisko</label>
-							<input value="{{userData.last_name}}" formControlName="lastName" name="last_name" type="text" class="form-control" [ngClass]="{ 'is-invalid': submitted && k.lastName.errors }" id="last_name">
-							<div *ngIf="submitted && k.lastName.errors" class="invalid-feedback">
-								<div *ngIf="k.lastName.errors">Nazwisko jest polem wymaganym i może zawierać jedynie litery alfabetu.</div>
-							</div>
-						</div>
-						<div class="col-xl-4 mb-3">
-							<label class="form-label">Specjalizacja</label>
-							<input value="{{userData.doctor_specialization}}" formControlName="doctor_specialization" name="last_name" type="text" class="form-control" [ngClass]="{ 'is-invalid': submitted && k.doctor_specialization.errors }" id="last_name">
-							<div *ngIf="submitted && k.doctor_specialization.errors" class="invalid-feedback">
-								<div *ngIf="k.doctor_specialization.errors">Specjalizacja jest polem wymaganym i może zawierać jedynie litery alfabetu.</div>
-							</div>
-						</div>
-					</div>
-					<button type="submit" class="btn-theme full">Wyślij</button>
-					<div class="porazka" *ngIf="error">Popraw błędnie wypełnione dane!</div>
-					<div class="sukces" *ngIf="succes">Dane zostały zaaktualizowane poprawnie.</div>
-				</form>
-			</div>
-		</div>
-	</div>
+  <div class="container">
+    <div class="row">
+      <div class="col-12 mb-3">
+        <h2>Edycja danych</h2>
+      </div>
+      <div class="col-12">
+        <form (ngSubmit)="edit()" *ngIf="hasPatientRole || isDoctorEdition" [formGroup]="editProfile" method="put">
+          <div class="row">
+            <div class="col-xl-4 mb-3">
+
+              <label class="form-label">Imię</label>
+              <input [ngClass]="{ 'is-invalid ng-invalid' : submitted && f.firstName.errors }" class="form-control" formControlName="firstName" id="name" name="name"
+                     type="text">
+              <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
+                <div *ngIf="f.firstName.errors">Imię jest polem wymaganym i może zaweirać jedynie litery alfabetu.</div>
+              </div>
+            </div>
+
+            <div class="col-xl-4 mb-3">
+              <label class="form-label">Nazwisko</label>
+              <input [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }" class="form-control" formControlName="lastName" id="last_name"
+                     name="last_name" type="text" value="{{userData.last_name}}">
+              <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
+                <div *ngIf="f.lastName.errors">Nazwisko jest polem wymaganym i może zaweirać jedynie litery alfabetu.
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-4 mb-3">
+              <label class="form-label">Miasto</label>
+              <input [ngClass]="{ 'is-invalid': submitted && f.city.errors }" class="form-control" formControlName="city" id="city" name="city"
+                     type="text" value="{{userData.city}}">
+              <div *ngIf="submitted && f.city.errors" class="invalid-feedback">
+                <div *ngIf="f.city.errors">Miasto jest polem wymaganym i może zawierać jedynie litery alfabetu.</div>
+              </div>
+            </div>
+            <div class="col-xl-4 mb-3">
+              <label class="form-label">Ulica</label>
+              <input [ngClass]="{ 'is-invalid': submitted && f.street.errors }" class="form-control" formControlName="street" id="street" name="street"
+                     type="text" value="{{userData.street}}">
+              <div *ngIf="submitted && f.street.errors" class="invalid-feedback">
+                <div *ngIf="f.street.errors.required">Ulica jest polem wymaganym.</div>
+              </div>
+            </div>
+            <div class="col-xl-4 mb-3">
+              <label class="form-label">Numer domu</label>
+              <input [ngClass]="{ 'is-invalid': submitted && f.homeNumber.errors }" class="form-control" formControlName="homeNumber" id="homeNumber"
+                     name="homeNumber" type="text"
+                     value="{{userData.homeNumber}}">
+              <div *ngIf="submitted && f.homeNumber.errors" class="invalid-feedback">
+                <div *ngIf="f.homeNumber.errors.required">Numer domu jest polem wymaganym i może mieć maksymalnie 4
+                  znaki.
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-4 mb-3">
+              <label class="form-label">Kod pocztowy</label>
+              <input [ngClass]="{ 'is-invalid': submitted && f.postalCode.errors }" class="form-control" formControlName="postalCode" id="postalCode"
+                     name="postalCode" type="text"
+                     value="{{userData.postalCode}}">
+              <div *ngIf="submitted && f.postalCode.errors" class="invalid-feedback">
+                <div *ngIf="f.postalCode.errors">Kod pocztowy jest polem wymaganym i musi być w formacie xx-xxx.</div>
+              </div>
+            </div>
+            <div class="col-xl-4 mb-3">
+              <label class="form-label">Pesel</label>
+              <input [ngClass]="{ 'is-invalid': submitted && f.PESEL.errors }" class="form-control" formControlName="PESEL" id="PESEL" name="PESEL"
+                     type="number" value="{{userData.PESEL}}">
+              <div *ngIf="submitted && f.PESEL.errors" class="invalid-feedback">
+                <div *ngIf="f.PESEL.errors">PESEL jest polem wymaganym i musi składać się jedynie z 11 cyfr</div>
+              </div>
+            </div>
+          </div>
+          <button class="btn-theme full" type="submit">Wyślij</button>
+          <div *ngIf="error" class="porazka">Popraw błędnie wypełnione dane!</div>
+          <div *ngIf="succes" class="sukces">Dane zostały zaaktualizowane poprawnie.</div>
+        </form>
+        <form (ngSubmit)="edit()" *ngIf="hasDoctorRole && !isDoctorEdition" [formGroup]="editProfileDoctor"
+              method="put">
+          <div class="row">
+            <div class="col-xl-4 mb-3">
+              <label class="form-label">Imię</label>
+              <input [ngClass]="{ 'is-invalid ng-invalid' : submitted && k.firstName.errors }" class="form-control" formControlName="firstName" id="name" name="name"
+                     type="text" value="{{userData.name}}">
+              <div *ngIf="submitted && k.firstName.errors" class="invalid-feedback">
+                <div *ngIf="k.firstName.errors">Imię jest polem wymaganym i może zaweirać jedynie litery alfabetu.</div>
+              </div>
+            </div>
+            <div class="col-xl-4 mb-3">
+              <label class="form-label">Nazwisko</label>
+              <input [ngClass]="{ 'is-invalid': submitted && k.lastName.errors }" class="form-control" formControlName="lastName" id="last_name"
+                     name="last_name" type="text" value="{{userData.last_name}}">
+              <div *ngIf="submitted && k.lastName.errors" class="invalid-feedback">
+                <div *ngIf="k.lastName.errors">Nazwisko jest polem wymaganym i może zawierać jedynie litery alfabetu.
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-4 mb-3">
+              <label class="form-label">Specjalizacja</label>
+              <input [ngClass]="{ 'is-invalid': submitted && k.doctor_specialization.errors }" class="form-control" formControlName="doctor_specialization"
+                     id="last_name" name="last_name"
+                     type="text" value="{{userData.doctor_specialization}}">
+              <div *ngIf="submitted && k.doctor_specialization.errors" class="invalid-feedback">
+                <div *ngIf="k.doctor_specialization.errors">Specjalizacja jest polem wymaganym i może zawierać jedynie
+                  litery alfabetu.
+                </div>
+              </div>
+            </div>
+          </div>
+          <button class="btn-theme full" type="submit">Wyślij</button>
+          <div *ngIf="error" class="porazka">Popraw błędnie wypełnione dane!</div>
+          <div *ngIf="succes" class="sukces">Dane zostały zaaktualizowane poprawnie.</div>
+        </form>
+      </div>
+    </div>
+  </div>
 </section>

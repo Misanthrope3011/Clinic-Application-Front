@@ -1,5 +1,6 @@
 <p>Wizyta została odwołana pomyślnie</p>
 
 <mat-dialog-actions align="center">
-	<button mat-button [mat-dialog-close]="true" cdkFocusInitial (click)="refresh()"><span class="cursor-wrap">Zamknij</span></button>
+  <button (click)="refresh()" [mat-dialog-close]="true" cdkFocusInitial mat-button><span
+    class="cursor-wrap">Zamknij</span></button>
 </mat-dialog-actions>

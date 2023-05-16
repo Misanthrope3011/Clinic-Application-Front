@@ -5,20 +5,22 @@
         <h2>Logowanie</h2>
       </div>
       <div class="col-12">
-        <form class="form" [formGroup]="loginRequest" (ngSubmit)="login()" method = "post">
+        <form (ngSubmit)="login()" [formGroup]="loginRequest" class="form" method="post">
           <div class="row">
             <div class="col-12 mb-3">
               <label class="form-label">Login</label>
-              <input formControlName="username" pattern="[a-zA-Z ]{4,30}" name="username" type="text" class="form-control" id="username" >
+              <input class="form-control" formControlName="username" id="username" name="username"
+                     pattern="[a-zA-Z ]{4,30}" type="text">
             </div>
           </div>
           <div class="row">
             <div class="col-12 mb-3">
               <label class="form-label">Hasło</label>
-              <input formControlName="password" pattern="[a-zA-Z ]{4,30}" name="password" type="password" class="form-control" id="password" >
+              <input class="form-control" formControlName="password" id="password" name="password"
+                     pattern="[a-zA-Z ]{4,30}" type="password">
             </div>
           </div>
-          <button type="submit" class="btn-theme full">Wyślij</button>
+          <button class="btn-theme full" type="submit">Wyślij</button>
         </form>
       </div>
     </div>

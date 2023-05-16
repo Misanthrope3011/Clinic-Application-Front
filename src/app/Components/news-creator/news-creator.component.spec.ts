@@ -1,5 +1,5 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { NewsCreatorComponent } from './news-creator.component';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
+import {NewsCreatorComponent} from './news-creator.component';
 
 describe('NewsCreatorComponent', () => {
   let component: NewsCreatorComponent;
@@ -7,9 +7,9 @@ describe('NewsCreatorComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ NewsCreatorComponent ]
+      declarations: [NewsCreatorComponent]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

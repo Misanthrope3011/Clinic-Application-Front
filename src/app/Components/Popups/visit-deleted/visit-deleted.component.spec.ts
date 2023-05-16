@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { VisitDeletedComponent } from './visit-deleted.component';
+import {VisitDeletedComponent} from './visit-deleted.component';
 
 describe('VisitDeletedComponent', () => {
   let component: VisitDeletedComponent;
@@ -8,9 +8,9 @@ describe('VisitDeletedComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ VisitDeletedComponent ]
+      declarations: [VisitDeletedComponent]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

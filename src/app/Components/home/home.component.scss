@@ -1,56 +1,64 @@
 section {
-	position: relative;
-	background: black;
-	.background-image {
-		background-image: url(/assets/img/background_home.jpg);
-		position: absolute;
-		width: 100%;
-		height: 100%;
-		top: 0;
-		left: 0;
-		opacity: 0.6;
-		z-index: 1;
-		background-size: cover;
-	}
-	.container {
-		display: flex;
-		align-items: flex-end;
-		z-index: 2;
-		position: relative;
-		.textbox {
-			color: #fff;
-			margin-bottom: 20vh;
-			.subtitle {
-				font-size: 24px;
-				margin-bottom: 16px;
-			}
-			.button {
-				.btn-theme {
-					font-size: 16px;
-					border-radius: 10px;
-					margin-right: 16px;
-					display: inline-block;
-					color: #fff;
-					background: transparent;
-					padding: 8px 20px;
-					text-decoration: none;
-					border: 1px solid #fff;
-					transition: .5s;
-					&:hover {
-						background: #28b9c0;
-						border: 1px solid #28b9c0;
-					}
-				}
-				.full {
-					background: #28b9c0;
-					border: 1px solid #28b9c0;
-					&:hover {
-						background: #fff;
-						border: 1px solid #fff;
-						color: #28b9c0;
-					}
-				}
-			}
-		}
-	}
+  position: relative;
+  background: black;
+
+  .background-image {
+    background-image: url(/assets/img/background_home.jpg);
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    opacity: 0.6;
+    z-index: 1;
+    background-size: cover;
+  }
+
+  .container {
+    display: flex;
+    align-items: flex-end;
+    z-index: 2;
+    position: relative;
+
+    .textbox {
+      color: #fff;
+      margin-bottom: 20vh;
+
+      .subtitle {
+        font-size: 24px;
+        margin-bottom: 16px;
+      }
+
+      .button {
+        .btn-theme {
+          font-size: 16px;
+          border-radius: 10px;
+          margin-right: 16px;
+          display: inline-block;
+          color: #fff;
+          background: transparent;
+          padding: 8px 20px;
+          text-decoration: none;
+          border: 1px solid #fff;
+          transition: .5s;
+
+          &:hover {
+            background: #28b9c0;
+            border: 1px solid #28b9c0;
+          }
+        }
+
+        .full {
+          background: #28b9c0;
+          border: 1px solid #28b9c0;
+
+          &:hover {
+            background: #fff;
+            border: 1px solid #fff;
+            color: #28b9c0;
+          }
+        }
+      }
+    }
+  }
 }

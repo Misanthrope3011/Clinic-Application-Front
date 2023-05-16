@@ -1,12 +1,9 @@
-import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { PatientManagerService } from 'src/app/services/patient-manager.service';
-import { TokenStorageService } from 'src/app/services/tokenstorage.service';
-import { ActivatedRoute } from '@angular/router';
-import { BrowserModule } from '@angular/platform-browser';
-import { FormControl, FormBuilder } from '@angular/forms';
-import { FormGroup, Validators } from '@angular/forms';
-import {Router} from '@angular/router';
+import {HttpClient} from '@angular/common/http';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {PatientManagerService} from 'src/app/services/patient-manager.service';
+import {TokenStorageService} from 'src/app/services/tokenstorage.service';
+import {ActivatedRoute, Router} from '@angular/router';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-editprofile',
@@ -20,17 +17,10 @@ export class EditProfileComponent implements OnInit, OnDestroy {
   hasPatientRole = false;
   hasDoctorRole = false;
   hasAdminRole = false;
-  roles : string[];
+  roles: string[];
   roleSpecificInfo;
-
-  get f() { return this.editProfile.controls; }
-  get k() { return this.editProfileDoctor.controls; }
-
-  constructor(private http: HttpClient,private tokenStorage: TokenStorageService, private formBuilder: FormBuilder, private patientManager: PatientManagerService, private router: Router, private activatedRoute: ActivatedRoute) { }
-
   userData;
   profileInfo;
-
   editProfile;
   editProfileDoctor
   submitted = false;
@@ -38,13 +28,22 @@ export class EditProfileComponent implements OnInit, OnDestroy {
   succes = false;
   loaded: boolean = false;
 
-  
+  constructor(private http: HttpClient, private tokenStorage: TokenStorageService, private formBuilder: FormBuilder, private patientManager: PatientManagerService, private router: Router, private activatedRoute: ActivatedRoute) {
+  }
+
+  get f() {
+    return this.editProfile.controls;
+  }
+
+  get k() {
+    return this.editProfileDoctor.controls;
+  }
 
   ngOnInit(): void {
 
     this.currentUser = this.tokenStorage.getUser().body;
     this.checkRole();
-    if(this.tokenStorage.getUser().body.roles[0] == "ROLE_DOCTOR") {
+    if (this.tokenStorage.getUser().body.roles[0] == "ROLE_DOCTOR") {
       this.roleSpecificInfo = this.tokenStorage.getUser().body.doctor;
     } else if (this.tokenStorage.getUser().body.roles[0] == "ROLE_PATIENT") {
       this.roleSpecificInfo = this.tokenStorage.getUser().body.patient;
@@ -54,19 +53,19 @@ export class EditProfileComponent implements OnInit, OnDestroy {
       }
     }
 
-    if(this.activatedRoute.snapshot.url[0].path === "doctor" && this.activatedRoute.snapshot.url[1].path == "board") {
+    if (this.activatedRoute.snapshot.url[0].path === "doctor" && this.activatedRoute.snapshot.url[1].path == "board") {
       var currentId = parseInt(this.activatedRoute.snapshot.url[3].path);
       this.isDoctorEdition = true;
-    } else
-    if (this.tokenStorage.getUser().body.roles[0] == "ROLE_PATIENT") {
+    } else if (this.tokenStorage.getUser().body.roles[0] == "ROLE_PATIENT") {
       this.userData = this.tokenStorage.getUser().body.patient;
       currentId = this.userData.id;
-    } else  if (this.tokenStorage.getUser().body.roles[0] == "ROLE_DOCTOR") {
+    } else if (this.tokenStorage.getUser().body.roles[0] == "ROLE_DOCTOR") {
       this.userData = this.tokenStorage.getUser().body.doctor;
       currentId = this.userData.id;
     }
     if (this.hasPatientRole == true || this.isDoctorEdition) {
-      this.patientManager.getPatient(currentId).subscribe(err => {this.userData = err["body"]
+      this.patientManager.getPatient(currentId).subscribe(err => {
+        this.userData = err["body"]
         console.log(this.userData);
         this.editProfile = new FormGroup({
           id: new FormControl(this.userData.id),
@@ -125,61 +124,55 @@ export class EditProfileComponent implements OnInit, OnDestroy {
       this.http.put("http://localhost:8080/doctor/editPatientProfile", this.editProfile.getRawValue()).subscribe(err => {
         this.succes = true;
       });
-    }
-    else
-      if(this.hasPatientRole) {
-        this.submitted = true;
-        if (this.editProfile.invalid)
-        {
-          this.error = true;
-          this.succes = false;
-        }
-        else {
-          this.editProfile.controls['id'].value = this.currentUser.id;
-          this.http.put("http://localhost:8080/patient/editProfile", this.editProfile.getRawValue()).subscribe(err => {
+    } else if (this.hasPatientRole) {
+      this.submitted = true;
+      if (this.editProfile.invalid) {
+        this.error = true;
+        this.succes = false;
+      } else {
+        this.editProfile.controls['id'].value = this.currentUser.id;
+        this.http.put("http://localhost:8080/patient/editProfile", this.editProfile.getRawValue()).subscribe(err => {
 
-            var edited = JSON.parse(localStorage.getItem('auth-user'));
-            console.log(edited);
-            edited.body.patient.name = this.editProfile.controls['firstName'].value;
-            edited.body.patient.last_name = this.editProfile.controls['lastName'].value;
-            edited.body.patient.pesel = this.editProfile.controls['PESEL'].value;
-            edited.body.patient.postal_code = this.editProfile.controls['postalCode'].value;
-            edited.body.patient.home_number = this.editProfile.controls['homeNumber'].value;
-            edited.body.patient.street = this.editProfile.controls['street'].value;
-            edited.body.patient.city = this.editProfile.controls['city'].value;
-            localStorage.setItem('auth-user', JSON.stringify(edited));
-            window.location.reload;
-          });
-          this.submitted = false;
-          this.error = false;
-          this.succes = true;
-        }
+          var edited = JSON.parse(localStorage.getItem('auth-user'));
+          console.log(edited);
+          edited.body.patient.name = this.editProfile.controls['firstName'].value;
+          edited.body.patient.last_name = this.editProfile.controls['lastName'].value;
+          edited.body.patient.pesel = this.editProfile.controls['PESEL'].value;
+          edited.body.patient.postal_code = this.editProfile.controls['postalCode'].value;
+          edited.body.patient.home_number = this.editProfile.controls['homeNumber'].value;
+          edited.body.patient.street = this.editProfile.controls['street'].value;
+          edited.body.patient.city = this.editProfile.controls['city'].value;
+          localStorage.setItem('auth-user', JSON.stringify(edited));
+          window.location.reload;
+        });
+        this.submitted = false;
+        this.error = false;
+        this.succes = true;
       }
-      else if (this.hasDoctorRole) {
-        this.submitted = true;
-        if (this.editProfileDoctor.invalid)
-        {
-          this.error = true;
-          this.succes = false;
-        }
-        else {
-          this.editProfileDoctor.controls['id'].value = this.currentUser.id;
-          this.http.put("http://localhost:8080/doctor/editProfile", this.editProfileDoctor.getRawValue()).subscribe(err => 
-            { var edited = JSON.parse(localStorage.getItem('auth-user'));
-            edited.body.doctor.name = this.editProfileDoctor.controls['firstName'].value;
-            edited.body.doctor.last_name = this.editProfileDoctor.controls['lastName'].value;
-            localStorage.setItem('auth-user', JSON.stringify(edited));
-            window.location.reload;})
-          this.submitted = false;
-          this.error = false;
-          this.succes = true;
-        }
+    } else if (this.hasDoctorRole) {
+      this.submitted = true;
+      if (this.editProfileDoctor.invalid) {
+        this.error = true;
+        this.succes = false;
+      } else {
+        this.editProfileDoctor.controls['id'].value = this.currentUser.id;
+        this.http.put("http://localhost:8080/doctor/editProfile", this.editProfileDoctor.getRawValue()).subscribe(err => {
+          var edited = JSON.parse(localStorage.getItem('auth-user'));
+          edited.body.doctor.name = this.editProfileDoctor.controls['firstName'].value;
+          edited.body.doctor.last_name = this.editProfileDoctor.controls['lastName'].value;
+          localStorage.setItem('auth-user', JSON.stringify(edited));
+          window.location.reload;
+        })
+        this.submitted = false;
+        this.error = false;
+        this.succes = true;
       }
     }
-
-    ngOnDestroy() {
-      window.localStorage.removeItem('fetchedPatient');
-    }
-
   }
+
+  ngOnDestroy() {
+    window.localStorage.removeItem('fetchedPatient');
+  }
+
+}
 

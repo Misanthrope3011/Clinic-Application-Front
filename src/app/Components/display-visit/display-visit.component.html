@@ -1,69 +1,74 @@
 <section>
-    <div class="container">
-        <div class="row">
-            <select [(ngModel)]="selectedModel" class="form-select" (change) = "changeOptions()" aria-label="Default select example" >
-                <ng-container>
-                    <option value="history"> Pokaz historie</option>
-                    <option value="pending"> Pokaz przyszle</option>
-                    <option value="both"> Pokaz wszystko</option>
-                </ng-container>
-            </select>
-            <div class="col-12 mb-3">
-                <h2 *ngIf="!role">Twoje wizyty</h2>
-                <h2 *ngIf="role">Wizyty pacjenta</h2>
+  <div class="container">
+    <div class="row">
+      <select (change)="changeOptions()" [(ngModel)]="selectedModel" aria-label="Default select example"
+              class="form-select">
+        <ng-container>
+          <option value="history"> Pokaz historie</option>
+          <option value="pending"> Pokaz przyszle</option>
+          <option value="both"> Pokaz wszystko</option>
+        </ng-container>
+      </select>
+      <div class="col-12 mb-3">
+        <h2 *ngIf="!role">Twoje wizyty</h2>
+        <h2 *ngIf="role">Wizyty pacjenta</h2>
+      </div>
+      <div class="col-12 all-visits">
+        <div *ngIf="showPending">
+          <div *ngFor="let visit of pending">
+            <div class="visit-box mb-4 pending">
+              <div class="addon">Nadchodząca</div>
+              <div class="title">
+                Nazwa badania: <strong>{{visit.medicalProcedure.name}}</strong>
+              </div>
+              <div class="date">
+                Data badania: <strong>{{visit.startDate | date: 'dd/MM/yy HH:mm'}}</strong>
+              </div>
+              <div class="doctor">
+                Badanie wykona: <strong>{{visit.doctor_id.name}}</strong>
+              </div>
+              <div class="opis">
+                {{visit.description}}
+              </div>
+              <a *ngIf="role" routerLink="/doctor/board/editVisit/{{visit.id}}">
+                <button class="btn-theme full yellow" type="button">Wyświetl</button>
+              </a>
+              <button (click)="deleteVisit(visit.id)" *ngIf="role && visit.deleteRequest" class="btn-theme full red"
+                      type="button"> Odwołaj wizytę
+              </button>
+              <button (click)="deleteRequest(visit.id)" *ngIf="!role && !visit.deleteRequest" class="btn-theme full red"
+                      type="button">Odwołaj wizytę
+              </button>
+              <div *ngIf="!role && visit.deleteRequest" class="already_did">
+                Zgłoszono chęć odwołania wizyty.
+              </div>
             </div>
-            <div class="col-12 all-visits">
-                <div *ngIf = "showPending" >
-                    <div *ngFor="let visit of pending">
-                        <div class="visit-box mb-4 pending">
-                            <div class="addon">Nadchodząca</div>
-                            <div class="title">
-                                Nazwa badania: <strong>{{visit.medicalProcedure.name}}</strong>
-                            </div>
-                            <div class="date">
-                                Data badania: <strong>{{visit.startDate | date: 'dd/MM/yy HH:mm'}}</strong>
-                            </div>
-                            <div class="doctor">
-                                Badanie wykona: <strong>{{visit.doctor_id.name}}</strong>
-                            </div>
-                            <div class="opis">
-                                {{visit.description}}
-                            </div>
-                            <a *ngIf="role" routerLink = "/doctor/board/editVisit/{{visit.id}}">
-                                <button type="button" class="btn-theme full yellow">Wyświetl</button>
-                            </a>
-                            <button *ngIf="role && visit.deleteRequest" type="button" class="btn-theme full red" (click)= "deleteVisit(visit.id)"> Odwołaj wizytę</button>
-                            <button *ngIf="!role && !visit.deleteRequest" type="button" class="btn-theme full red" (click)= "deleteRequest(visit.id)">Odwołaj wizytę</button>
-                            <div class="already_did" *ngIf="!role && visit.deleteRequest">
-                                Zgłoszono chęć odwołania wizyty.
-                            </div>
-                        </div>
-                    </div>
-                </div>    
-                <div *ngIf = "showHistory">
-                    <div *ngFor="let visit of history">
-                        <div class="visit-box mb-4 history">
-                            <div class="addon">Odbyta</div>
-                            <div class="title">
-                                Nazwa badania: <strong>{{visit.medicalProcedure.name}}</strong>
-                            </div>
-                            <div class="date">
-                                Data badania: <strong>{{visit.startDate | date: 'dd/MM/yy HH:mm'}}</strong>
-                            </div>
-                            <div class="doctor">
-                                Badanie wykonał: <strong>{{visit.doctor_id.name}}</strong>
-                            </div>
-                            <div class="opis">
-                                {{visit.description}}
-                            </div>
-                            <a *ngIf="role" routerLink = "/doctor/board/editVisit/{{visit.id}}">
-                                <button type="button" class="btn-theme full yellow">Wyświetl</button>
-                            </a>
-                        </div>
-                    </div>
-                </div>    
-            </div>
+          </div>
         </div>
+        <div *ngIf="showHistory">
+          <div *ngFor="let visit of history">
+            <div class="visit-box mb-4 history">
+              <div class="addon">Odbyta</div>
+              <div class="title">
+                Nazwa badania: <strong>{{visit.medicalProcedure.name}}</strong>
+              </div>
+              <div class="date">
+                Data badania: <strong>{{visit.startDate | date: 'dd/MM/yy HH:mm'}}</strong>
+              </div>
+              <div class="doctor">
+                Badanie wykonał: <strong>{{visit.doctor_id.name}}</strong>
+              </div>
+              <div class="opis">
+                {{visit.description}}
+              </div>
+              <a *ngIf="role" routerLink="/doctor/board/editVisit/{{visit.id}}">
+                <button class="btn-theme full yellow" type="button">Wyświetl</button>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
 
 </section>

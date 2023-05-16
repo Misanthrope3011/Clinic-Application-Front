@@ -1,6 +1,6 @@
-import { TestBed } from '@angular/core/testing';
+import {TestBed} from '@angular/core/testing';
 
-import { FetchUsersInfoService } from './fetch-users-info.service';
+import {FetchUsersInfoService} from './fetch-users-info.service';
 
 describe('FetchUsersInfoService', () => {
   let service: FetchUsersInfoService;

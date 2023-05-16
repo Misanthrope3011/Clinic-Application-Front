@@ -1,8 +1,7 @@
-import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
-import { MessageSentComponent } from '../Popups/message-sent/message-sent.component';
-import { MatDialog } from '@angular/material/dialog';
+import {HttpClient} from '@angular/common/http';
+import {Component, OnInit} from '@angular/core';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {MatDialog} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-contact',
@@ -15,11 +14,6 @@ export class ContactComponent implements OnInit {
   submitted = false;
   error = false;
   succes = false;
-
-  get f() { return this.contact.controls; }
-
-  constructor(private httpClient: HttpClient, private formBuilder: FormBuilder, private matDialog: MatDialog) { }
-
   contact = new FormGroup({
     name: new FormControl(''),
     lastName: new FormControl(''),
@@ -27,6 +21,13 @@ export class ContactComponent implements OnInit {
     email: new FormControl(''),
     content: new FormControl('')
   });
+
+  constructor(private httpClient: HttpClient, private formBuilder: FormBuilder, private matDialog: MatDialog) {
+  }
+
+  get f() {
+    return this.contact.controls;
+  }
 
   ngOnInit(): void {
 
@@ -42,18 +43,16 @@ export class ContactComponent implements OnInit {
 
   sendContactForm() {
     this.submitted = true;
-    if (this.contact.invalid)
-    {
+    if (this.contact.invalid) {
       this.error = true;
       this.succes = false;
-    }
-    else {
+    } else {
 
       this.httpClient.post("http://localhost:8080/contact", this.contact.value)
-      .subscribe(log => console.log(log));
+        .subscribe(log => console.log(log));
 
       this.contact.reset();
-      this.contact.setErrors({ 'invalid': true });
+      this.contact.setErrors({'invalid': true});
       this.submitted = false;
       this.error = false;
       this.succes = true;

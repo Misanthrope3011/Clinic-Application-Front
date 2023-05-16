@@ -1,8 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroup,FormControl, FormBuilder } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
-import { PatientManagerService } from '../../services/patient-manager.service';
-import { Router } from '@angular/router';
+import {Component, OnInit} from '@angular/core';
+import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
+import {ActivatedRoute, Router} from '@angular/router';
+import {PatientManagerService} from '../../services/patient-manager.service';
 
 @Component({
   selector: 'app-edit-visit',
@@ -11,15 +10,11 @@ import { Router } from '@angular/router';
 })
 export class EditVisitComponent implements OnInit {
 
-  constructor(private formBuilder: FormBuilder, private patientManager: PatientManagerService, private activatedRoute: ActivatedRoute, private router: Router) { }
-
-
   visitInfo: any;
-  isVisitPaid: boolean  = false;
+  isVisitPaid: boolean = false;
   patients: any;
   succes = false;
   hasTookPlace;
-
   editVisit = new FormGroup({
     description: new FormControl(),
     isPaid: new FormControl(''),
@@ -27,15 +22,19 @@ export class EditVisitComponent implements OnInit {
 
   })
 
-  ngOnInit(): void {
-    this.patientManager.getVisit(parseInt(this.activatedRoute.snapshot.url[3].path)).subscribe((visit => {this.visitInfo = visit["body"]
+  constructor(private formBuilder: FormBuilder, private patientManager: PatientManagerService, private activatedRoute: ActivatedRoute, private router: Router) {
+  }
 
-      if(new Date() < this.visitInfo.startDate) {
+  ngOnInit(): void {
+    this.patientManager.getVisit(parseInt(this.activatedRoute.snapshot.url[3].path)).subscribe((visit => {
+      this.visitInfo = visit["body"]
+
+      if (new Date() < this.visitInfo.startDate) {
       } else {
 
       }
-      
-      if(this.visitInfo.hasTookPlace === null) {
+
+      if (this.visitInfo.hasTookPlace === null) {
         this.hasTookPlace = false;
       } else {
         this.hasTookPlace = this.visitInfo.hasTookPlace;
@@ -43,7 +42,7 @@ export class EditVisitComponent implements OnInit {
 
       this.isVisitPaid = this.visitInfo.paid;
       this.editVisit = this.formBuilder.group({
-        description:  [this.visitInfo.description],
+        description: [this.visitInfo.description],
         isPaid: [this.isVisitPaid],
         hasTookPlace: [this.hasTookPlace]
       })
@@ -54,7 +53,7 @@ export class EditVisitComponent implements OnInit {
 
   editRequest() {
     console.log(this.editVisit.getRawValue());
-    this.patientManager.updateVisit(this.visitInfo.id,this.editVisit.getRawValue()).subscribe(err => console.log(err));
+    this.patientManager.updateVisit(this.visitInfo.id, this.editVisit.getRawValue()).subscribe(err => console.log(err));
     this.succes = true;
   }
 }

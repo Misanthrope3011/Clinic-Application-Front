@@ -1,7 +1,7 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import { FormGroup } from '@angular/forms';
+import {FormGroup} from '@angular/forms';
 
 
 @Injectable({
@@ -9,18 +9,19 @@ import { FormGroup } from '@angular/forms';
 })
 export class PatientManagerService {
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient) {
+  }
 
   updateVisit(id: number, formGroup: FormGroup) {
-    return this.httpClient.put(`http://localhost:8080/doctor/editVisit/${id}`, formGroup , {observe: 'response'});
+    return this.httpClient.put(`http://localhost:8080/doctor/editVisit/${id}`, formGroup, {observe: 'response'});
   }
 
   getPatient(id: number): Observable<any> {
-    return this.httpClient.get(`http://localhost:8080/doctor/getPatient/${id}`,  {observe: 'response'});
+    return this.httpClient.get(`http://localhost:8080/doctor/getPatient/${id}`, {observe: 'response'});
   }
 
   getVisit(id: number): Observable<any> {
-    return this.httpClient.get(`http://localhost:8080/doctor/getVisit/${id}`,  {observe: 'response'});
+    return this.httpClient.get(`http://localhost:8080/doctor/getVisit/${id}`, {observe: 'response'});
   }
 
   getVisits(id: number): Observable<Object> {
@@ -41,7 +42,6 @@ export class PatientManagerService {
   }
 
 
-
   deletePatient(id: number): Observable<any> {
     return this.httpClient.delete(`http://localhost:8080/doctor/deletePatient/${id}`, {observe: 'response'});
   }
@@ -57,7 +57,6 @@ export class PatientManagerService {
   getAbandonRequest(): Observable<any> {
     return this.httpClient.get(`http://localhost:8080/doctor/getAbandoned`, {observe: 'response'});
   }
-
 
 
 }

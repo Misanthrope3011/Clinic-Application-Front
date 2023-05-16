@@ -1,57 +1,57 @@
 <section>
-	<div class="container">
-		<div class="row">
-			<div class="col-12 mb-3">
-				<h2>
-					Edytuj wizytę
-				</h2>
-			</div>
-			<div class="col-12">
-				<div class="visit-box">
-					<div class="badanie">
-						<div class="eytkieta">
-							Nazwa badania:
-						</div>
-						<div class="wartosc">
-							{{visitInfo?.medicalProcedure.name}}
-						</div>
-					</div>
-					<div class="date">
-						<div class="eytkieta">
-							Data badania:
-						</div>
-						<div class="wartosc">
-							{{visitInfo?.startDate | date: 'dd/MM/yy HH:mm'}}
-						</div>
-					</div>
-					<div class="patient-name">
-						<div class="eytkieta">
-							Pacjent:
-						</div>
-						<div class="wartosc">
-							{{visitInfo?.patient_id.name}} {{visitInfo?.patient_id.last_name}}
-						</div>
-					</div>
-					<form [formGroup]="editVisit" (submit) = "editRequest()">
-						<label class="etykieta" for="description">Opis badania:</label>
-						<textarea class="form-control" id="description" formControlName="description"  rows="4"></textarea>
-						<div class="action">
-							<div class="zaznaczajka">
-								<input class="form-check-input" formControlName="isPaid" type="checkbox" id="isPaid">
-								<label class="form-check-label" for="isPaid">Badanie opłacone</label>
-							</div>
-						</div>
-						<div class="action">
-							<div class="zaznaczajka">
-								<input class="form-check-input" formControlName="hasTookPlace" type="checkbox" id="hasTookPlace">
-								<label class="form-check-label" for="hasTookPlace">Badanie odbyło się</label>
-							</div>
-						</div>
-						<button type="submit" class="btn-theme full blue">Zapisz</button>
-						<div class="sukces" *ngIf="succes">Wizyta została poprawnie edytowana.</div>
-					</form>
-				</div>
-			</div>
-		</div>
-	</div>
-</section>								
+  <div class="container">
+    <div class="row">
+      <div class="col-12 mb-3">
+        <h2>
+          Edytuj wizytę
+        </h2>
+      </div>
+      <div class="col-12">
+        <div class="visit-box">
+          <div class="badanie">
+            <div class="eytkieta">
+              Nazwa badania:
+            </div>
+            <div class="wartosc">
+              {{visitInfo?.medicalProcedure.name}}
+            </div>
+          </div>
+          <div class="date">
+            <div class="eytkieta">
+              Data badania:
+            </div>
+            <div class="wartosc">
+              {{visitInfo?.startDate | date: 'dd/MM/yy HH:mm'}}
+            </div>
+          </div>
+          <div class="patient-name">
+            <div class="eytkieta">
+              Pacjent:
+            </div>
+            <div class="wartosc">
+              {{visitInfo?.patient_id.name}} {{visitInfo?.patient_id.last_name}}
+            </div>
+          </div>
+          <form (submit)="editRequest()" [formGroup]="editVisit">
+            <label class="etykieta" for="description">Opis badania:</label>
+            <textarea class="form-control" formControlName="description" id="description" rows="4"></textarea>
+            <div class="action">
+              <div class="zaznaczajka">
+                <input class="form-check-input" formControlName="isPaid" id="isPaid" type="checkbox">
+                <label class="form-check-label" for="isPaid">Badanie opłacone</label>
+              </div>
+            </div>
+            <div class="action">
+              <div class="zaznaczajka">
+                <input class="form-check-input" formControlName="hasTookPlace" id="hasTookPlace" type="checkbox">
+                <label class="form-check-label" for="hasTookPlace">Badanie odbyło się</label>
+              </div>
+            </div>
+            <button class="btn-theme full blue" type="submit">Zapisz</button>
+            <div *ngIf="succes" class="sukces">Wizyta została poprawnie edytowana.</div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

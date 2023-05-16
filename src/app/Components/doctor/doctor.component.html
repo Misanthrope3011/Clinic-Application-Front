@@ -1,97 +1,100 @@
 <section>
-    <div class="container">
-        <div class="row">
-            <form (submit) = "findUserByPESEL()">
-            <input [(ngModel)]="PESEL" name="name" type="text" class="form-control" id="name">
-            <button type="submit" class="btn btn-primary"> Znajdź </button>
-            </form>
-            <div class="col-12 mb-3">
-                <h2 *ngIf = "!role">Zarządzanie użytkownikami:</h2>
-                <label for="doctor">Ilosc pacjentow na strone</label>
-                <select class="form-select" (change)="changeNumberOfElements()" [(ngModel)]="numberOfItemsOnPage" 
-                                                                        aria-label="Default select example">
-                    <option selected value="5">5</option>
-                    <option value="10">10</option>
-                    <option value="15">15</option>
-                  </select>
-                <h2 *ngIf = "role">Zarządzanie pacjentami:</h2>
-            </div>
+  <div class="container">
+    <div class="row">
+      <form (submit)="findUserByPESEL()">
+        <input [(ngModel)]="PESEL" class="form-control" id="name" name="name" type="text">
+        <button class="btn btn-primary" type="submit"> Znajdź</button>
+      </form>
+      <div class="col-12 mb-3">
+        <h2 *ngIf="!role">Zarządzanie użytkownikami:</h2>
+        <label for="doctor">Ilosc pacjentow na strone</label>
+        <select (change)="changeNumberOfElements()" [(ngModel)]="numberOfItemsOnPage" aria-label="Default select example"
+                class="form-select">
+          <option selected value="5">5</option>
+          <option value="10">10</option>
+          <option value="15">15</option>
+        </select>
+        <h2 *ngIf="role">Zarządzanie pacjentami:</h2>
+      </div>
+      <div class="col-12">
+        <div class="admin-panel">
+          <div *ngFor="let patient of patients" class="single_patient mb-4">
             <div class="col-12">
-                <div class="admin-panel">
-                    <div class="single_patient mb-4" *ngFor="let patient of patients">
-                        <div class="col-12">
-                            <div class="row">
-                                <div class="col-xl-4 col-md-6 col-12">
-                                    <div class="plaque">
-                                        <div class="etykieta">ID:</div>
-                                        <div class="value">{{patient.id}}</div>
-                                    </div>
-                                </div>
-                                <div class="col-xl-4 col-md-6 col-12">
-                                    <div class="plaque">
-                                        <div class="etykieta">Imię:</div>
-                                        <div class="value">{{patient.name}}</div>
-                                    </div>
-                                </div>
-                                <div class="col-xl-4 col-md-6 col-12">
-                                    <div class="plaque">
-                                        <div class="etykieta">Nazwisko:</div>
-                                        <div class="value">{{patient.last_name}}</div>
-                                    </div>
-                                </div>
-                                <div class="col-xl-4 col-md-6 col-12">
-                                    <div class="plaque">
-                                        <div class="etykieta">Kod pocztowy:</div>
-                                        <div class="value">{{patient.postal_code}}</div>
-                                    </div>
-                                </div>
-                                <div class="col-xl-4 col-md-6 col-12">
-                                    <div class="plaque">
-                                        <div class="etykieta">Miasto:</div>
-                                        <div class="value">{{patient.city}}</div>
-                                    </div>
-                                </div>
-                                <div class="col-xl-4 col-md-6 col-12">
-                                    <div class="plaque">
-                                        <div class="etykieta">Ulica:</div>
-                                        <div class="value">{{patient.street}}</div>
-                                    </div>
-                                </div>
-                                <div class="col-xl-4 col-md-6 col-12">
-                                    <div class="plaque">
-                                        <div class="etykieta">Nr domu:</div>
-                                        <div class="value">{{patient.home_number}}</div>
-                                    </div>
-                                </div>
-                                <div class="col-xl-4 col-md-6 col-12">
-                                    <div class="plaque">
-                                        <div class="etykieta">PESEL:</div>
-                                        <div class="value">{{patient.pesel}}</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div *ngIf = "!role">
-                                <button type="button" class="btn-theme full red" (click) = "deletePatient(patient.id)">Usuń konto</button>
-                                <button type="button" class="btn-theme full yellow" (click) = "fetchPatient(patient.id)">Edytuj dane</button>
-                            </div>
-                            <div *ngIf = "role">
-                                <a routerLink = "/doctor/board/displayVisit/{{patient.id}}"><button type="button" class="btn-theme full blue">Wyświetl wizyty</button></a>
-                            </div>
+              <div class="row">
+                <div class="col-xl-4 col-md-6 col-12">
+                  <div class="plaque">
+                    <div class="etykieta">ID:</div>
+                    <div class="value">{{patient.id}}</div>
+                  </div>
+                </div>
+                <div class="col-xl-4 col-md-6 col-12">
+                  <div class="plaque">
+                    <div class="etykieta">Imię:</div>
+                    <div class="value">{{patient.name}}</div>
+                  </div>
+                </div>
+                <div class="col-xl-4 col-md-6 col-12">
+                  <div class="plaque">
+                    <div class="etykieta">Nazwisko:</div>
+                    <div class="value">{{patient.last_name}}</div>
+                  </div>
+                </div>
+                <div class="col-xl-4 col-md-6 col-12">
+                  <div class="plaque">
+                    <div class="etykieta">Kod pocztowy:</div>
+                    <div class="value">{{patient.postal_code}}</div>
+                  </div>
+                </div>
+                <div class="col-xl-4 col-md-6 col-12">
+                  <div class="plaque">
+                    <div class="etykieta">Miasto:</div>
+                    <div class="value">{{patient.city}}</div>
+                  </div>
+                </div>
+                <div class="col-xl-4 col-md-6 col-12">
+                  <div class="plaque">
+                    <div class="etykieta">Ulica:</div>
+                    <div class="value">{{patient.street}}</div>
+                  </div>
+                </div>
+                <div class="col-xl-4 col-md-6 col-12">
+                  <div class="plaque">
+                    <div class="etykieta">Nr domu:</div>
+                    <div class="value">{{patient.home_number}}</div>
+                  </div>
+                </div>
+                <div class="col-xl-4 col-md-6 col-12">
+                  <div class="plaque">
+                    <div class="etykieta">PESEL:</div>
+                    <div class="value">{{patient.pesel}}</div>
+                  </div>
+                </div>
+              </div>
+              <div *ngIf="!role">
+                <button (click)="deletePatient(patient.id)" class="btn-theme full red" type="button">Usuń konto</button>
+                <button (click)="fetchPatient(patient.id)" class="btn-theme full yellow" type="button">Edytuj dane
+                </button>
+              </div>
+              <div *ngIf="role">
+                <a routerLink="/doctor/board/displayVisit/{{patient.id}}">
+                  <button class="btn-theme full blue" type="button">Wyświetl wizyty</button>
+                </a>
+              </div>
 
-                        </div>
-                    </div>
-                </div>
             </div>
-            
-            <nav aria-label="Page navigation example">
-                <ul class="pagination">
-                <div *ngFor="let number of tempArray">
-                  <li class="page-item">
-                      <a class="page-link" [routerLink]="doctor" [queryParams]="{page: number}">{{number + 1}}</a></li>
-                </div>
-               
-                </ul>
-              </nav>
+          </div>
         </div>
+      </div>
+
+      <nav aria-label="Page navigation example">
+        <ul class="pagination">
+          <div *ngFor="let number of tempArray">
+            <li class="page-item">
+              <a [queryParams]="{page: number}" [routerLink]="doctor" class="page-link">{{number + 1}}</a></li>
+          </div>
+
+        </ul>
+      </nav>
     </div>
+  </div>
 </section>

@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { TokenStorageService } from '../../services/tokenstorage.service';
-import { BrowserModule } from '@angular/platform-browser';
+import {Component, OnInit} from '@angular/core';
+import {TokenStorageService} from '../../services/tokenstorage.service';
 
 @Component({
   selector: 'app-profile',
@@ -12,11 +11,13 @@ export class ProfileComponent implements OnInit {
   profileInfo: any;
   roleSpecificInfo;
   isPatient = false;
-  constructor(private tokenStorage: TokenStorageService) { }
+
+  constructor(private tokenStorage: TokenStorageService) {
+  }
 
   ngOnInit(): void {
     this.profileInfo = this.tokenStorage.getUser().body;
-    if(this.tokenStorage.getUser().body.roles[0] == "ROLE_DOCTOR") {
+    if (this.tokenStorage.getUser().body.roles[0] == "ROLE_DOCTOR") {
       this.roleSpecificInfo = this.tokenStorage.getUser().body.doctor;
       this.isPatient = true;
     } else if (this.tokenStorage.getUser().body.roles[0] == "ROLE_PATIENT") {

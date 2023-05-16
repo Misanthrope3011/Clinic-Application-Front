@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {TokenStorageService} from '../../services/tokenstorage.service';
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -7,18 +8,18 @@ import {TokenStorageService} from '../../services/tokenstorage.service';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private tokenStorage: TokenStorageService) { }
-
   login: boolean = false;
-  
+
+  constructor(private tokenStorage: TokenStorageService) {
+  }
 
   ngOnInit(): void {
-    if(this.tokenStorage.isLoggedIn()) {
-     this.login = true;
-   } else {
-     this.login = false;
-   }
-   
+    if (this.tokenStorage.isLoggedIn()) {
+      this.login = true;
+    } else {
+      this.login = false;
+    }
+
   }
 
 }

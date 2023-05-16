@@ -1,36 +1,37 @@
 <section class="news">
-    <div class="container">
-        <div class="row">
-            <div class="col-12 mb-3">
-                <h2>Formularz wpisów</h2>
-            </div>
-            <div class="col-12">
-                <div class="news-creator">
-                    <form [formGroup]="newsCreator" (ngSubmit)="sendContactForm()">
-                        <div class="row">
-                            <div class="col-xl-6 col-md-6 col-12">
-                                <div class="form-group">
-                                    <label for="exampleFormControlInput1">Tytuł</label>
-                                    <input type="text" formControlName = "title" class="form-control" id="exampleFormControlInput1">
-                                </div>
-                            </div>
-                            <div class="col-xl-6 col-md-6 col-12">
-                                <div class="form-group">
-                                    <label for="exampleFormControlTextarea1">Autor</label>
-                                    <input class="form-control"  formControlName = "header" id="exampleFormControlTextarea1">
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <div class="form-group">
-                                    <label for="exampleFormControlTextarea1">Treść</label>
-                                    <textarea class="form-control"  formControlName = "content" id="exampleFormControlTextarea1" rows="5"></textarea>
-                                </div>
-                            </div>
-                        </div>
-                        <button type="submit" class="btn-theme full">Dodaj wpis</button>
-                    </form>
+  <div class="container">
+    <div class="row">
+      <div class="col-12 mb-3">
+        <h2>Formularz wpisów</h2>
+      </div>
+      <div class="col-12">
+        <div class="news-creator">
+          <form (ngSubmit)="sendContactForm()" [formGroup]="newsCreator">
+            <div class="row">
+              <div class="col-xl-6 col-md-6 col-12">
+                <div class="form-group">
+                  <label for="exampleFormControlInput1">Tytuł</label>
+                  <input class="form-control" formControlName="title" id="exampleFormControlInput1" type="text">
                 </div>
+              </div>
+              <div class="col-xl-6 col-md-6 col-12">
+                <div class="form-group">
+                  <label for="exampleFormControlTextarea1">Autor</label>
+                  <input class="form-control" formControlName="header" id="exampleFormControlTextarea1">
+                </div>
+              </div>
+              <div class="col-12">
+                <div class="form-group">
+                  <label for="exampleFormControlTextarea1">Treść</label>
+                  <textarea class="form-control" formControlName="content" id="exampleFormControlTextarea1"
+                            rows="5"></textarea>
+                </div>
+              </div>
             </div>
+            <button class="btn-theme full" type="submit">Dodaj wpis</button>
+          </form>
         </div>
+      </div>
     </div>
+  </div>
 </section>

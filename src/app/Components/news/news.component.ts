@@ -1,6 +1,6 @@
-import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import {HttpClient} from '@angular/common/http';
+import {Component, OnInit} from '@angular/core';
+
 @Component({
   selector: 'app-news',
   templateUrl: './news.component.html',
@@ -8,9 +8,10 @@ import { BrowserModule } from '@angular/platform-browser';
 })
 export class NewsComponent implements OnInit {
 
-  constructor(private httpClient: HttpClient) { }
-
   news;
+
+  constructor(private httpClient: HttpClient) {
+  }
 
   ngOnInit(): void {
     this.httpClient.get("http://localhost:8080/news?page=1&limit=5").subscribe(data => this.news = data);

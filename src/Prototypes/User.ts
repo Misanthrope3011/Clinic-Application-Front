@@ -1,16 +1,16 @@
 export class User {
-id: number = 0;
-username: string;
-email: string;
+  id: number = 0;
+  username: string;
+  email: string;
 //lastName: string;
-surname: string;
+  surname: string;
 //city: string;
 //street: string;
 //homeNumber: string;
 //postalCode: number;
-encoded_password: string;
-sign_up_date: any;
+  encoded_password: string;
+  sign_up_date: any;
 //PESEL: string;
-userRole: string = "ROLE_PATIENT";
+  userRole: string = "ROLE_PATIENT";
 
 }

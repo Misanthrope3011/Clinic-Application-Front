@@ -1,12 +1,14 @@
-  section {
-    padding-top: 120px;
+section {
+  padding-top: 120px;
+}
+
+.userbox {
+  box-shadow: 0 0 10px rgba(129, 129, 129, 50%);
+  padding: 20px;
+
+  .namebox {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
   }
-  .userbox {
-      box-shadow: 0 0 10px rgba(129, 129, 129, 50%);
-      padding: 20px;
-      .namebox {
-          display: flex;
-          width: 100%;
-          justify-content: space-between;
-      }
-  }
+}

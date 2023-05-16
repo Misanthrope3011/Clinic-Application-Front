@@ -124,5 +124,8 @@
       }
     }
   },
-  "defaultProject": "ClinicProjectFrontend"
+  "defaultProject": "ClinicProjectFrontend",
+  "cli": {
+    "analytics": "775b634c-7b4a-4cb3-9b23-e66325c0a59a"
+  }
 }

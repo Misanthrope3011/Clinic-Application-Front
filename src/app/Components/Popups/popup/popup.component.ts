@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {TokenStorageService} from '../../../services/tokenstorage.service'
 
 @Component({
@@ -8,19 +8,20 @@ import {TokenStorageService} from '../../../services/tokenstorage.service'
 })
 export class PopupComponent implements OnInit {
 
-  constructor(private tokenStorage: TokenStorageService) { }
-  
   componentResponse: string;
+
+  constructor(private tokenStorage: TokenStorageService) {
+  }
 
   ngOnInit(): void {
 
-    if(this.tokenStorage.isLoginSucces) {
+    if (this.tokenStorage.isLoginSucces) {
       this.componentResponse = "Zalogowano pomyślnie";
     } else {
       this.componentResponse = "Błędne logowanie";
-    } 
+    }
   }
-  
+
   refresh() {
     window.location.reload();
   }

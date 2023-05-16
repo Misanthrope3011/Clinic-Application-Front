@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { FetchUsersInfoService } from 'src/app/services/fetch-users-info.service';
+import {Component, OnInit} from '@angular/core';
+import {FetchUsersInfoService} from 'src/app/services/fetch-users-info.service';
 
 @Component({
   selector: 'app-panel',
@@ -8,7 +8,8 @@ import { FetchUsersInfoService } from 'src/app/services/fetch-users-info.service
 })
 export class PanelComponent implements OnInit {
 
-  constructor(private sendProfileRequest: FetchUsersInfoService ) { }
+  constructor(private sendProfileRequest: FetchUsersInfoService) {
+  }
 
   ngOnInit(): void {
   }
