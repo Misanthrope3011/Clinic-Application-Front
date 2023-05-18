@@ -88,8 +88,12 @@
             </div>
           </div>
           <button class="btn-theme full" type="submit">Wyślij</button>
-          <div *ngIf="error" class="porazka">Popraw błędnie wypełnione dane!</div>
-          <div *ngIf="succes" class="sukces">Konto zostało utworzone! Możesz się zalogować.</div>
+          <div *ngIf="error; else successMessage">
+            Failure
+          </div>
+          <ng-template #successMessage>
+            Success
+          </ng-template>
         </form>
       </div>
     </div>

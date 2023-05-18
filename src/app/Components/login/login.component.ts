@@ -17,7 +17,6 @@ export class LoginComponent implements OnInit {
   user: User;
   submitted = false;
   error = false;
-  succes = false;
   seerviceStatus: any;
   profileForm = new FormGroup({
     firstName: new FormControl(''),
@@ -60,24 +59,22 @@ export class LoginComponent implements OnInit {
     this.submitted = true;
     if (this.profileForm.invalid) {
       this.error = true;
-      this.succes = false;
     } else {
-
       this.submitted = false;
-      this.user.sign_up_date = new Date();
+      this.user.signUpDate = new Date();
       this.patient.name = this.profileForm.controls['firstName'].value;
-      this.patient.last_name = this.profileForm.controls['lastName'].value;
+      this.patient.lastName = this.profileForm.controls['lastName'].value;
       this.user.email = this.profileForm.controls['email'].value;
-      this.user.encoded_password = this.profileForm.controls['password'].value;
+      this.user.password = this.profileForm.controls['password'].value;
       this.patient.city = this.profileForm.controls['city'].value;
       this.patient.street = this.profileForm.controls['street'].value;
-      this.patient.home_number = this.profileForm.controls['homeNumber'].value;
-      this.patient.postal_code = this.profileForm.controls['postalCode'].value;
+      this.patient.homeNumber = this.profileForm.controls['homeNumber'].value;
+      this.patient.postalCode = this.profileForm.controls['postalCode'].value;
       this.patient.PESEL = this.profileForm.controls['PESEL'].value;
 
       this.fetchService.sendForm(this.user).subscribe(data => {
           this.seerviceStatus = data;
-          this.patient.user_id = data.body.id;
+          this.patient.userId = data.body.id;
 
           this.fetchService.sendPatientInfo(this.patient).subscribe(data => {
             console.log(data);
@@ -90,7 +87,6 @@ export class LoginComponent implements OnInit {
       this.profileForm.setErrors({'invalid': true});
       this.submitted = false;
       this.error = false;
-      this.succes = true;
     }
 
   }

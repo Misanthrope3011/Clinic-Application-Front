@@ -8,8 +8,8 @@ export class User {
 //street: string;
 //homeNumber: string;
 //postalCode: number;
-  encoded_password: string;
-  sign_up_date: any;
+  password: string;
+  signUpDate: any;
 //PESEL: string;
   userRole: string = "ROLE_PATIENT";
 
