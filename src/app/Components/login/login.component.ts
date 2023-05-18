@@ -5,6 +5,7 @@ import {Patient} from '../../../Prototypes/Patient'
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {TokenStorageService} from '../../services/tokenstorage.service'
 import {Router} from '@angular/router';
+import {State} from "./State";
 
 @Component({
   selector: 'app-login',
@@ -16,8 +17,10 @@ export class LoginComponent implements OnInit {
   patient: Patient;
   user: User;
   submitted = false;
-  error = false;
-  seerviceStatus: any;
+  error = State.INITIAL;
+  serviceStatus: any;
+  errorMessage: String = "";
+
   profileForm = new FormGroup({
     firstName: new FormControl(''),
     lastName: new FormControl(''),
@@ -35,12 +38,11 @@ export class LoginComponent implements OnInit {
     this.patient = new Patient();
   }
 
-  get f() {
+  get getControls() {
     return this.profileForm.controls;
   }
 
   ngOnInit(): void {
-
     this.profileForm = this.formBuilder.group({
       firstName: ['', [Validators.required, Validators.pattern('[a-zA-ZęółśążźćńĘÓŁŚĄŻŹĆŃ]*')]],
       lastName: ['', [Validators.required, Validators.pattern('[a-zA-ZęółśążźćńĘÓŁŚĄŻŹĆŃ]*')]],
@@ -55,40 +57,43 @@ export class LoginComponent implements OnInit {
 
   }
 
-  sendApi() {
+  sendSignUpRequest() {
     this.submitted = true;
     if (this.profileForm.invalid) {
-      this.error = true;
+      this.error = State.ERROR;
     } else {
       this.submitted = false;
-      this.user.signUpDate = new Date();
-      this.patient.name = this.profileForm.controls['firstName'].value;
-      this.patient.lastName = this.profileForm.controls['lastName'].value;
-      this.user.email = this.profileForm.controls['email'].value;
-      this.user.password = this.profileForm.controls['password'].value;
-      this.patient.city = this.profileForm.controls['city'].value;
-      this.patient.street = this.profileForm.controls['street'].value;
-      this.patient.homeNumber = this.profileForm.controls['homeNumber'].value;
-      this.patient.postalCode = this.profileForm.controls['postalCode'].value;
-      this.patient.PESEL = this.profileForm.controls['PESEL'].value;
-
-      this.fetchService.sendForm(this.user).subscribe(data => {
-          this.seerviceStatus = data;
+      this.createPatient();
+      this.fetchService.signUpRequest(this.user).subscribe(data => {
+          this.serviceStatus = data;
           this.patient.userId = data.body.id;
-
           this.fetchService.sendPatientInfo(this.patient).subscribe(data => {
             console.log(data);
             //this.router.navigate(['login']);
+            this.error = State.VALID;
           })
-        }, err => console.log(err)
+        }, err => {
+          this.errorMessage = err.error;
+          this.error = State.ERROR;
+        }
       )
-
       this.profileForm.reset();
       this.profileForm.setErrors({'invalid': true});
-      this.submitted = false;
-      this.error = false;
     }
-
   }
 
+  private createPatient() {
+    this.user.signUpDate = new Date();
+    this.patient.name = this.profileForm.controls['firstName'].value;
+    this.patient.lastName = this.profileForm.controls['lastName'].value;
+    this.user.email = this.profileForm.controls['email'].value;
+    this.user.password = this.profileForm.controls['password'].value;
+    this.patient.city = this.profileForm.controls['city'].value;
+    this.patient.street = this.profileForm.controls['street'].value;
+    this.patient.homeNumber = this.profileForm.controls['homeNumber'].value;
+    this.patient.postalCode = this.profileForm.controls['postalCode'].value;
+    this.patient.PESEL = this.profileForm.controls['PESEL'].value;
+  }
+
+  public readonly State = State;
 }

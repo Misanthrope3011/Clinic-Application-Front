@@ -61,7 +61,6 @@ export class TokenStorageService {
     return false;
   }
 
-
   public getUser(): any {
     const user = window.localStorage.getItem(USER_KEY);
     if (user) {
