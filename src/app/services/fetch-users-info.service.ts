@@ -19,7 +19,7 @@ export class FetchUsersInfoService {
     return this.http.get("http://localhost:8080/home", {observe: 'response'});
   }
 
-  sendForm(user: User): Observable<any> {
+  signUpRequest(user: User): Observable<any> {
     return this.http.post("http://localhost:8080/signUp", user, {observe: 'response'});
   };
 
