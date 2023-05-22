@@ -11,60 +11,59 @@
           <div class="row">
             <div class="col-xl-4 mb-3">
               <label class="form-label">Imię</label>
-              <input [ngClass]="{ 'is-invalid ng-invalid' : submitted && getControls.firstName.errors }" class="form-control" formControlName="firstName" id="firstName" name="firstName"
+              <input [ngClass]="{ 'is-invalid ng-invalid' : getControls.firstName.touched && getControls.firstName.errors }" class="form-control" formControlName="firstName" id="firstName" name="firstName"
                      type="text">
-              <div *ngIf="submitted && getControls.firstName.errors" class="invalid-feedback">
-                <div *ngIf="getControls.firstName.errors">Imię jest polem wymaganym i może zaweirać jedynie litery alfabetu.</div>
+              <div *ngIf="getControls.firstName.touched && getControls.firstName.errors" class="invalid-feedback">
+                Imię jest polem wymaganym i może zaweirać jedynie litery alfabetu.
               </div>
             </div>
             <div class="col-xl-4 mb-3">
               <label class="form-label">Nazwisko</label>
-              <input [ngClass]="{ 'is-invalid': submitted && getControls.lastName.errors }" class="form-control" formControlName="lastName" id="lastName"
+              <input [ngClass]="{ 'is-invalid': getControls.lastName.touched && getControls.lastName.errors }" class="form-control" formControlName="lastName" id="lastName"
                      name="lastName" type="text">
-              <div *ngIf="submitted && getControls.lastName.errors" class="invalid-feedback">
-                <div *ngIf="getControls.lastName.errors">Nazwisko jest polem wymaganym i może zaweirać jedynie litery alfabetu.
-                </div>
+              <div *ngIf="getControls.lastName.touched && getControls.lastName.errors" class="invalid-feedback">
+                Nazwisko jest polem wymaganym i może zaweirać jedynie litery alfabetu.
               </div>
             </div>
             <div class="col-xl-4 mb-3">
               <label class="form-label">E-mail</label>
-              <input [ngClass]="{ 'is-invalid': submitted && getControls.email.errors }" aria-describedby="emailHelp" class="form-control" formControlName="email"
+              <input [ngClass]="{ 'is-invalid': getControls.email.touched && getControls.email.errors }" aria-describedby="emailHelp" class="form-control" formControlName="email"
                      id="email" name="email" type="email">
-              <div *ngIf="submitted && getControls.email.errors" class="invalid-feedback">
+              <div *ngIf="getControls.email.touched && getControls.email.errors" class="invalid-feedback">
                 <div *ngIf="getControls.email.errors.required">Adres e-mail jest polem wymaganym.</div>
                 <div *ngIf="getControls.email.errors.email">Podany adres e-mail nie jest poprawny.</div>
               </div>
             </div>
             <div class="col-xl-4 mb-3">
               <label class="form-label">Hasło</label>
-              <input [ngClass]="{ 'is-invalid': submitted && getControls.password.errors }" class="form-control" formControlName="password" id="password"
+              <input [ngClass]="{ 'is-invalid': getControls.password.touched && getControls.password.errors }" class="form-control" formControlName="password" id="password"
                      name="password" type="password">
-              <div *ngIf="submitted && getControls.password.errors" class="invalid-feedback">
+              <div *ngIf="getControls.password.touched && getControls.password.errors" class="invalid-feedback">
                 <div *ngIf="getControls.password.errors.required">Hasło jest polem wymaganym.</div>
                 <div *ngIf="getControls.password.errors.minlength">Hasło jest zbyt krótkie.</div>
               </div>
             </div>
             <div class="col-xl-4 mb-3">
               <label class="form-label">Miasto</label>
-              <input [ngClass]="{ 'is-invalid': submitted && getControls.city.errors }" class="form-control" formControlName="city" id="city"
+              <input [ngClass]="{ 'is-invalid': getControls.city.touched && getControls.city.errors }" class="form-control" formControlName="city" id="city"
                      name="city" type="text">
-              <div *ngIf="submitted && getControls.city.errors" class="invalid-feedback">
+              <div *ngIf="getControls.city.touched && getControls.city.errors" class="invalid-feedback">
                 <div *ngIf="getControls.city.errors">Miasto jest polem wymaganym i może zawierać jedynie litery alfabetu.</div>
               </div>
             </div>
             <div class="col-xl-4 mb-3">
               <label class="form-label">Ulica</label>
-              <input [ngClass]="{ 'is-invalid': submitted && getControls.street.errors }" class="form-control" formControlName="street" id="street"
+              <input [ngClass]="{ 'is-invalid': getControls.street.touched && getControls.street.errors }" class="form-control" formControlName="street" id="street"
                      name="street" type="text">
-              <div *ngIf="submitted && getControls.street.errors" class="invalid-feedback">
+              <div *ngIf="getControls.street.touched && getControls.street.errors" class="invalid-feedback">
                 <div *ngIf="getControls.street.errors.required">Ulica jest polem wymaganym.</div>
               </div>
             </div>
             <div class="col-xl-4 mb-3">
               <label class="form-label">Numer domu</label>
-              <input [ngClass]="{ 'is-invalid': submitted && getControls.homeNumber.errors }" class="form-control" formControlName="homeNumber" id="homeNumber"
+              <input [ngClass]="{ 'is-invalid': getControls.homeNumber.touched && getControls.homeNumber.errors }" class="form-control" formControlName="homeNumber" id="homeNumber"
                      name="homeNumber" type="text">
-              <div *ngIf="submitted && getControls.homeNumber.errors" class="invalid-feedback">
+              <div *ngIf="getControls.homeNumber.touched && getControls.homeNumber.errors" class="invalid-feedback">
                 <div *ngIf="getControls.homeNumber.errors.required">Numer domu jest polem wymaganym i może mieć maksymalnie 4
                   znaki.
                 </div>
@@ -72,18 +71,18 @@
             </div>
             <div class="col-xl-4 mb-3">
               <label class="form-label">Kod pocztowy</label>
-              <input [ngClass]="{ 'is-invalid': submitted && getControls.postalCode.errors }" class="form-control" formControlName="postalCode" id="postalCode"
+              <input [ngClass]="{ 'is-invalid': getControls.postalCode.touched && getControls.postalCode.errors }" class="form-control" formControlName="postalCode" id="postalCode"
                      name="postalCode" type="text">
-              <div *ngIf="submitted && getControls.postalCode.errors" class="invalid-feedback">
+              <div *ngIf="getControls.postalCode.touched && getControls.postalCode.errors" class="invalid-feedback">
                 <div *ngIf="getControls.postalCode.errors">Kod pocztowy jest polem wymaganym i musi być w formacie xx-xxx.</div>
               </div>
             </div>
             <div class="col-xl-4 mb-3">
               <label class="form-label">Pesel</label>
-              <input [ngClass]="{ 'is-invalid': submitted && getControls.PESEL.errors }" class="form-control" formControlName="PESEL" id="PESEL"
+              <input [ngClass]="{ 'is-invalid': getControls.PESEL.touched && getControls.PESEL.errors }" class="form-control" formControlName="PESEL" id="PESEL"
                      name="PESEL" type="number">
-              <div *ngIf="submitted && getControls.PESEL.errors" class="invalid-feedback">
-                <div *ngIf="getControls.PESEL.errors">PESEL jest polem wymaganym i musi składać się jedynie z 11 cyfr.</div>
+              <div *ngIf="getControls.PESEL.touched && getControls.PESEL.errors" class="invalid-feedback">
+                PESEL jest polem wymaganym i musi składać się jedynie z 11 cyfr.
               </div>
             </div>
           </div>
